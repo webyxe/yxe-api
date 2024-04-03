@@ -4,10 +4,13 @@ import prismaClient from "./prismaClient";
 export class FindArtigos {
     async handle(req: any, res: any) {
         const {search, page} = req.query;
+        
         const quantityPerPage = 2;
         const pageCurrent = (page) ? parseInt(page) : 1;
         const initialPage = (pageCurrent * quantityPerPage) - quantityPerPage;
+
         const countTotal = await prismaClient.artigos.count();
+
         const artigos = await prismaClient.artigos.findMany({
             where: {
                 OR: [
@@ -26,8 +29,6 @@ export class FindArtigos {
             countCurrent: artigos.length,
             pageCurrent: pageCurrent,
             quantityPerPage: quantityPerPage,
-
-
         }
 
         return res.json(jsonReturn);
