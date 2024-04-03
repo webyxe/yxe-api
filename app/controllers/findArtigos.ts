@@ -2,30 +2,34 @@ import { Request, Response } from "express";
 import prismaClient from "./prismaClient";
 
 export class FindArtigos {
-    async handle(req: Request, res: Response) {
-        const searchParams = (req.query.search) ? req.query.search as string : "";
-        const pageParams = (req.query.page) ? req.query.page as number : 0;
+    async handle(req: any, res: any) {
+        const {search, page} = req.query;
         const quantityPerPage = 2;
-        const initialPage = (pageParams * quantityPerPage) - quantityPerPage
+        const pageCurrent = (page) ? parseInt(page) : 1;
+        const initialPage = (pageCurrent * quantityPerPage) - quantityPerPage;
+        const countTotal = await prismaClient.artigos.count();
         const artigos = await prismaClient.artigos.findMany({
             where: {
                 OR: [
-                    {
-                        title: {
-                            contains: searchParams,
-                        },
-                    },
-                    {
-                        content: {
-                            contains: searchParams,
-                        },
-                    },
+                    { title: { contains: search }, },
+                    { content: { contains: search }, },
                 ]
             },
             skip: initialPage,
             take: quantityPerPage,
+            orderBy: [{ created_at: 'desc'}],
         });
 
-        return res.json(artigos);
+        const jsonReturn = {
+            artigos: artigos,
+            countTotal: countTotal,
+            countCurrent: artigos.length,
+            pageCurrent: pageCurrent,
+            quantityPerPage: quantityPerPage,
+
+
+        }
+
+        return res.json(jsonReturn);
     }
 }
