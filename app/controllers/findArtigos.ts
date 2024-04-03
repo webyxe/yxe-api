@@ -9,9 +9,9 @@ export class FindArtigos {
         const pageCurrent = (page) ? parseInt(page) : 1;
         const initialPage = (pageCurrent * quantityPerPage) - quantityPerPage;
 
-        const countTotal = await prismaClient.artigos.count();
+        const countTotal = await prismaClient.artigo.count();
 
-        const artigos = await prismaClient.artigos.findMany({
+        const artigos = await prismaClient.artigo.findMany({
             where: {
                 OR: [
                     { title: { contains: search }, },

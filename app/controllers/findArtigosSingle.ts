@@ -4,7 +4,7 @@ import prismaClient from "./prismaClient";
 export class FindArtigosSingle {
     async handle(req: Request, res: Response) {
         const searchParams = req.query.search as string;
-        const artigos = await prismaClient.artigos.findUnique({
+        const artigos = await prismaClient.artigo.findUnique({
             where: {
                 slug: searchParams
             }

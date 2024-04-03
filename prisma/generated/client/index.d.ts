@@ -14,20 +14,20 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model formulario
+ * Model Contato
  * 
  */
-export type formulario = $Result.DefaultSelection<Prisma.$formularioPayload>
+export type Contato = $Result.DefaultSelection<Prisma.$ContatoPayload>
 /**
- * Model artigos
+ * Model Artigo
  * 
  */
-export type artigos = $Result.DefaultSelection<Prisma.$artigosPayload>
+export type Artigo = $Result.DefaultSelection<Prisma.$ArtigoPayload>
 /**
- * Model tags
+ * Model Tag
  * 
  */
-export type tags = $Result.DefaultSelection<Prisma.$tagsPayload>
+export type Tag = $Result.DefaultSelection<Prisma.$TagPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -36,8 +36,8 @@ export type tags = $Result.DefaultSelection<Prisma.$tagsPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Formularios
- * const formularios = await prisma.formulario.findMany()
+ * // Fetch zero or more Contatoes
+ * const contatoes = await prisma.contato.findMany()
  * ```
  *
  * 
@@ -57,8 +57,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Formularios
-   * const formularios = await prisma.formulario.findMany()
+   * // Fetch zero or more Contatoes
+   * const contatoes = await prisma.contato.findMany()
    * ```
    *
    * 
@@ -152,34 +152,34 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
       /**
-   * `prisma.formulario`: Exposes CRUD operations for the **formulario** model.
+   * `prisma.contato`: Exposes CRUD operations for the **Contato** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Formularios
-    * const formularios = await prisma.formulario.findMany()
+    * // Fetch zero or more Contatoes
+    * const contatoes = await prisma.contato.findMany()
     * ```
     */
-  get formulario(): Prisma.formularioDelegate<ExtArgs>;
+  get contato(): Prisma.ContatoDelegate<ExtArgs>;
 
   /**
-   * `prisma.artigos`: Exposes CRUD operations for the **artigos** model.
+   * `prisma.artigo`: Exposes CRUD operations for the **Artigo** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Artigos
-    * const artigos = await prisma.artigos.findMany()
+    * const artigos = await prisma.artigo.findMany()
     * ```
     */
-  get artigos(): Prisma.artigosDelegate<ExtArgs>;
+  get artigo(): Prisma.ArtigoDelegate<ExtArgs>;
 
   /**
-   * `prisma.tags`: Exposes CRUD operations for the **tags** model.
+   * `prisma.tag`: Exposes CRUD operations for the **Tag** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Tags
-    * const tags = await prisma.tags.findMany()
+    * const tags = await prisma.tag.findMany()
     * ```
     */
-  get tags(): Prisma.tagsDelegate<ExtArgs>;
+  get tag(): Prisma.TagDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -650,9 +650,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    formulario: 'formulario',
-    artigos: 'artigos',
-    tags: 'tags'
+    Contato: 'Contato',
+    Artigo: 'Artigo',
+    Tag: 'Tag'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -669,205 +669,205 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'formulario' | 'artigos' | 'tags'
+      modelProps: 'contato' | 'artigo' | 'tag'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
-      formulario: {
-        payload: Prisma.$formularioPayload<ExtArgs>
-        fields: Prisma.formularioFieldRefs
+      Contato: {
+        payload: Prisma.$ContatoPayload<ExtArgs>
+        fields: Prisma.ContatoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.formularioFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload> | null
+            args: Prisma.ContatoFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.formularioFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           findFirst: {
-            args: Prisma.formularioFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload> | null
+            args: Prisma.ContatoFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.formularioFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           findMany: {
-            args: Prisma.formularioFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>[]
+            args: Prisma.ContatoFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>[]
           }
           create: {
-            args: Prisma.formularioCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           createMany: {
-            args: Prisma.formularioCreateManyArgs<ExtArgs>,
+            args: Prisma.ContatoCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.formularioDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           update: {
-            args: Prisma.formularioUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           deleteMany: {
-            args: Prisma.formularioDeleteManyArgs<ExtArgs>,
+            args: Prisma.ContatoDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.formularioUpdateManyArgs<ExtArgs>,
+            args: Prisma.ContatoUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.formularioUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$formularioPayload>
+            args: Prisma.ContatoUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           aggregate: {
-            args: Prisma.FormularioAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateFormulario>
+            args: Prisma.ContatoAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateContato>
           }
           groupBy: {
-            args: Prisma.formularioGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<FormularioGroupByOutputType>[]
+            args: Prisma.ContatoGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ContatoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.formularioCountArgs<ExtArgs>,
-            result: $Utils.Optional<FormularioCountAggregateOutputType> | number
+            args: Prisma.ContatoCountArgs<ExtArgs>,
+            result: $Utils.Optional<ContatoCountAggregateOutputType> | number
           }
         }
       }
-      artigos: {
-        payload: Prisma.$artigosPayload<ExtArgs>
-        fields: Prisma.artigosFieldRefs
+      Artigo: {
+        payload: Prisma.$ArtigoPayload<ExtArgs>
+        fields: Prisma.ArtigoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.artigosFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload> | null
+            args: Prisma.ArtigoFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.artigosFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           findFirst: {
-            args: Prisma.artigosFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload> | null
+            args: Prisma.ArtigoFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.artigosFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           findMany: {
-            args: Prisma.artigosFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>[]
+            args: Prisma.ArtigoFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>[]
           }
           create: {
-            args: Prisma.artigosCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           createMany: {
-            args: Prisma.artigosCreateManyArgs<ExtArgs>,
+            args: Prisma.ArtigoCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.artigosDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           update: {
-            args: Prisma.artigosUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           deleteMany: {
-            args: Prisma.artigosDeleteManyArgs<ExtArgs>,
+            args: Prisma.ArtigoDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.artigosUpdateManyArgs<ExtArgs>,
+            args: Prisma.ArtigoUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.artigosUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$artigosPayload>
+            args: Prisma.ArtigoUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           aggregate: {
-            args: Prisma.ArtigosAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateArtigos>
+            args: Prisma.ArtigoAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateArtigo>
           }
           groupBy: {
-            args: Prisma.artigosGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ArtigosGroupByOutputType>[]
+            args: Prisma.ArtigoGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ArtigoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.artigosCountArgs<ExtArgs>,
-            result: $Utils.Optional<ArtigosCountAggregateOutputType> | number
+            args: Prisma.ArtigoCountArgs<ExtArgs>,
+            result: $Utils.Optional<ArtigoCountAggregateOutputType> | number
           }
         }
       }
-      tags: {
-        payload: Prisma.$tagsPayload<ExtArgs>
-        fields: Prisma.tagsFieldRefs
+      Tag: {
+        payload: Prisma.$TagPayload<ExtArgs>
+        fields: Prisma.TagFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.tagsFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload> | null
+            args: Prisma.TagFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.tagsFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findFirst: {
-            args: Prisma.tagsFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload> | null
+            args: Prisma.TagFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.tagsFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findMany: {
-            args: Prisma.tagsFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>[]
+            args: Prisma.TagFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>[]
           }
           create: {
-            args: Prisma.tagsCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           createMany: {
-            args: Prisma.tagsCreateManyArgs<ExtArgs>,
+            args: Prisma.TagCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.tagsDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           update: {
-            args: Prisma.tagsUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           deleteMany: {
-            args: Prisma.tagsDeleteManyArgs<ExtArgs>,
+            args: Prisma.TagDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.tagsUpdateManyArgs<ExtArgs>,
+            args: Prisma.TagUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.tagsUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$tagsPayload>
+            args: Prisma.TagUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           aggregate: {
-            args: Prisma.TagsAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateTags>
+            args: Prisma.TagAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateTag>
           }
           groupBy: {
-            args: Prisma.tagsGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<TagsGroupByOutputType>[]
+            args: Prisma.TagGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<TagGroupByOutputType>[]
           }
           count: {
-            args: Prisma.tagsCountArgs<ExtArgs>,
-            result: $Utils.Optional<TagsCountAggregateOutputType> | number
+            args: Prisma.TagCountArgs<ExtArgs>,
+            result: $Utils.Optional<TagCountAggregateOutputType> | number
           }
         }
       }
@@ -1025,22 +1025,55 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type TagCountOutputType
+   */
+
+  export type TagCountOutputType = {
+    artigos: number
+  }
+
+  export type TagCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    artigos?: boolean | TagCountOutputTypeCountArtigosArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * TagCountOutputType without action
+   */
+  export type TagCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TagCountOutputType
+     */
+    select?: TagCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * TagCountOutputType without action
+   */
+  export type TagCountOutputTypeCountArtigosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArtigoWhereInput
+  }
+
+
 
   /**
    * Models
    */
 
   /**
-   * Model formulario
+   * Model Contato
    */
 
-  export type AggregateFormulario = {
-    _count: FormularioCountAggregateOutputType | null
-    _min: FormularioMinAggregateOutputType | null
-    _max: FormularioMaxAggregateOutputType | null
+  export type AggregateContato = {
+    _count: ContatoCountAggregateOutputType | null
+    _min: ContatoMinAggregateOutputType | null
+    _max: ContatoMaxAggregateOutputType | null
   }
 
-  export type FormularioMinAggregateOutputType = {
+  export type ContatoMinAggregateOutputType = {
     id: string | null
     name: string | null
     email: string | null
@@ -1048,7 +1081,7 @@ export namespace Prisma {
     created_at: Date | null
   }
 
-  export type FormularioMaxAggregateOutputType = {
+  export type ContatoMaxAggregateOutputType = {
     id: string | null
     name: string | null
     email: string | null
@@ -1056,7 +1089,7 @@ export namespace Prisma {
     created_at: Date | null
   }
 
-  export type FormularioCountAggregateOutputType = {
+  export type ContatoCountAggregateOutputType = {
     id: number
     name: number
     email: number
@@ -1066,7 +1099,7 @@ export namespace Prisma {
   }
 
 
-  export type FormularioMinAggregateInputType = {
+  export type ContatoMinAggregateInputType = {
     id?: true
     name?: true
     email?: true
@@ -1074,7 +1107,7 @@ export namespace Prisma {
     created_at?: true
   }
 
-  export type FormularioMaxAggregateInputType = {
+  export type ContatoMaxAggregateInputType = {
     id?: true
     name?: true
     email?: true
@@ -1082,7 +1115,7 @@ export namespace Prisma {
     created_at?: true
   }
 
-  export type FormularioCountAggregateInputType = {
+  export type ContatoCountAggregateInputType = {
     id?: true
     name?: true
     email?: true
@@ -1091,112 +1124,112 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type FormularioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which formulario to aggregate.
+     * Filter which Contato to aggregate.
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of formularios to fetch.
+     * Determine the order of Contatoes to fetch.
      */
-    orderBy?: formularioOrderByWithRelationAndSearchRelevanceInput | formularioOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: formularioWhereUniqueInput
+    cursor?: ContatoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` formularios from the position of the cursor.
+     * Take `±n` Contatoes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` formularios.
+     * Skip the first `n` Contatoes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned formularios
+     * Count returned Contatoes
     **/
-    _count?: true | FormularioCountAggregateInputType
+    _count?: true | ContatoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FormularioMinAggregateInputType
+    _min?: ContatoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FormularioMaxAggregateInputType
+    _max?: ContatoMaxAggregateInputType
   }
 
-  export type GetFormularioAggregateType<T extends FormularioAggregateArgs> = {
-        [P in keyof T & keyof AggregateFormulario]: P extends '_count' | 'count'
+  export type GetContatoAggregateType<T extends ContatoAggregateArgs> = {
+        [P in keyof T & keyof AggregateContato]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFormulario[P]>
-      : GetScalarType<T[P], AggregateFormulario[P]>
+        : GetScalarType<T[P], AggregateContato[P]>
+      : GetScalarType<T[P], AggregateContato[P]>
   }
 
 
 
 
-  export type formularioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: formularioWhereInput
-    orderBy?: formularioOrderByWithAggregationInput | formularioOrderByWithAggregationInput[]
-    by: FormularioScalarFieldEnum[] | FormularioScalarFieldEnum
-    having?: formularioScalarWhereWithAggregatesInput
+  export type ContatoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContatoWhereInput
+    orderBy?: ContatoOrderByWithAggregationInput | ContatoOrderByWithAggregationInput[]
+    by: ContatoScalarFieldEnum[] | ContatoScalarFieldEnum
+    having?: ContatoScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FormularioCountAggregateInputType | true
-    _min?: FormularioMinAggregateInputType
-    _max?: FormularioMaxAggregateInputType
+    _count?: ContatoCountAggregateInputType | true
+    _min?: ContatoMinAggregateInputType
+    _max?: ContatoMaxAggregateInputType
   }
 
-  export type FormularioGroupByOutputType = {
+  export type ContatoGroupByOutputType = {
     id: string
     name: string
     email: string
     phone: string
     created_at: Date
-    _count: FormularioCountAggregateOutputType | null
-    _min: FormularioMinAggregateOutputType | null
-    _max: FormularioMaxAggregateOutputType | null
+    _count: ContatoCountAggregateOutputType | null
+    _min: ContatoMinAggregateOutputType | null
+    _max: ContatoMaxAggregateOutputType | null
   }
 
-  type GetFormularioGroupByPayload<T extends formularioGroupByArgs> = Prisma.PrismaPromise<
+  type GetContatoGroupByPayload<T extends ContatoGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FormularioGroupByOutputType, T['by']> &
+      PickEnumerable<ContatoGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FormularioGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ContatoGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FormularioGroupByOutputType[P]>
-            : GetScalarType<T[P], FormularioGroupByOutputType[P]>
+              : GetScalarType<T[P], ContatoGroupByOutputType[P]>
+            : GetScalarType<T[P], ContatoGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type formularioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ContatoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     email?: boolean
     phone?: boolean
     created_at?: boolean
-  }, ExtArgs["result"]["formulario"]>
+  }, ExtArgs["result"]["contato"]>
 
-  export type formularioSelectScalar = {
+  export type ContatoSelectScalar = {
     id?: boolean
     name?: boolean
     email?: boolean
@@ -1205,8 +1238,8 @@ export namespace Prisma {
   }
 
 
-  export type $formularioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "formulario"
+  export type $ContatoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Contato"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1214,160 +1247,160 @@ export namespace Prisma {
       email: string
       phone: string
       created_at: Date
-    }, ExtArgs["result"]["formulario"]>
+    }, ExtArgs["result"]["contato"]>
     composites: {}
   }
 
 
-  type formularioGetPayload<S extends boolean | null | undefined | formularioDefaultArgs> = $Result.GetResult<Prisma.$formularioPayload, S>
+  type ContatoGetPayload<S extends boolean | null | undefined | ContatoDefaultArgs> = $Result.GetResult<Prisma.$ContatoPayload, S>
 
-  type formularioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<formularioFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: FormularioCountAggregateInputType | true
+  type ContatoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ContatoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ContatoCountAggregateInputType | true
     }
 
-  export interface formularioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['formulario'], meta: { name: 'formulario' } }
+  export interface ContatoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Contato'], meta: { name: 'Contato' } }
     /**
-     * Find zero or one Formulario that matches the filter.
-     * @param {formularioFindUniqueArgs} args - Arguments to find a Formulario
+     * Find zero or one Contato that matches the filter.
+     * @param {ContatoFindUniqueArgs} args - Arguments to find a Contato
      * @example
-     * // Get one Formulario
-     * const formulario = await prisma.formulario.findUnique({
+     * // Get one Contato
+     * const contato = await prisma.contato.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends formularioFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioFindUniqueArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends ContatoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoFindUniqueArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Formulario that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Contato that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {formularioFindUniqueOrThrowArgs} args - Arguments to find a Formulario
+     * @param {ContatoFindUniqueOrThrowArgs} args - Arguments to find a Contato
      * @example
-     * // Get one Formulario
-     * const formulario = await prisma.formulario.findUniqueOrThrow({
+     * // Get one Contato
+     * const contato = await prisma.contato.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends formularioFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends ContatoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Formulario that matches the filter.
+     * Find the first Contato that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioFindFirstArgs} args - Arguments to find a Formulario
+     * @param {ContatoFindFirstArgs} args - Arguments to find a Contato
      * @example
-     * // Get one Formulario
-     * const formulario = await prisma.formulario.findFirst({
+     * // Get one Contato
+     * const contato = await prisma.contato.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends formularioFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioFindFirstArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends ContatoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoFindFirstArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Formulario that matches the filter or
+     * Find the first Contato that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioFindFirstOrThrowArgs} args - Arguments to find a Formulario
+     * @param {ContatoFindFirstOrThrowArgs} args - Arguments to find a Contato
      * @example
-     * // Get one Formulario
-     * const formulario = await prisma.formulario.findFirstOrThrow({
+     * // Get one Contato
+     * const contato = await prisma.contato.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends formularioFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends ContatoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more Formularios that matches the filter.
+     * Find zero or more Contatoes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ContatoFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Formularios
-     * const formularios = await prisma.formulario.findMany()
+     * // Get all Contatoes
+     * const contatoes = await prisma.contato.findMany()
      * 
-     * // Get first 10 Formularios
-     * const formularios = await prisma.formulario.findMany({ take: 10 })
+     * // Get first 10 Contatoes
+     * const contatoes = await prisma.contato.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const formularioWithIdOnly = await prisma.formulario.findMany({ select: { id: true } })
+     * const contatoWithIdOnly = await prisma.contato.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends formularioFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends ContatoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Formulario.
-     * @param {formularioCreateArgs} args - Arguments to create a Formulario.
+     * Create a Contato.
+     * @param {ContatoCreateArgs} args - Arguments to create a Contato.
      * @example
-     * // Create one Formulario
-     * const Formulario = await prisma.formulario.create({
+     * // Create one Contato
+     * const Contato = await prisma.contato.create({
      *   data: {
-     *     // ... data to create a Formulario
+     *     // ... data to create a Contato
      *   }
      * })
      * 
     **/
-    create<T extends formularioCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioCreateArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends ContatoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoCreateArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many Formularios.
-     *     @param {formularioCreateManyArgs} args - Arguments to create many Formularios.
+     * Create many Contatoes.
+     *     @param {ContatoCreateManyArgs} args - Arguments to create many Contatoes.
      *     @example
-     *     // Create many Formularios
-     *     const formulario = await prisma.formulario.createMany({
+     *     // Create many Contatoes
+     *     const contato = await prisma.contato.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends formularioCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioCreateManyArgs<ExtArgs>>
+    createMany<T extends ContatoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Formulario.
-     * @param {formularioDeleteArgs} args - Arguments to delete one Formulario.
+     * Delete a Contato.
+     * @param {ContatoDeleteArgs} args - Arguments to delete one Contato.
      * @example
-     * // Delete one Formulario
-     * const Formulario = await prisma.formulario.delete({
+     * // Delete one Contato
+     * const Contato = await prisma.contato.delete({
      *   where: {
-     *     // ... filter to delete one Formulario
+     *     // ... filter to delete one Contato
      *   }
      * })
      * 
     **/
-    delete<T extends formularioDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioDeleteArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends ContatoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoDeleteArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Formulario.
-     * @param {formularioUpdateArgs} args - Arguments to update one Formulario.
+     * Update one Contato.
+     * @param {ContatoUpdateArgs} args - Arguments to update one Contato.
      * @example
-     * // Update one Formulario
-     * const formulario = await prisma.formulario.update({
+     * // Update one Contato
+     * const contato = await prisma.contato.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1377,34 +1410,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends formularioUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioUpdateArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends ContatoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoUpdateArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more Formularios.
-     * @param {formularioDeleteManyArgs} args - Arguments to filter Formularios to delete.
+     * Delete zero or more Contatoes.
+     * @param {ContatoDeleteManyArgs} args - Arguments to filter Contatoes to delete.
      * @example
-     * // Delete a few Formularios
-     * const { count } = await prisma.formulario.deleteMany({
+     * // Delete a few Contatoes
+     * const { count } = await prisma.contato.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends formularioDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, formularioDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends ContatoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ContatoDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Formularios.
+     * Update zero or more Contatoes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ContatoUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Formularios
-     * const formulario = await prisma.formulario.updateMany({
+     * // Update many Contatoes
+     * const contato = await prisma.contato.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1414,59 +1447,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends formularioUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioUpdateManyArgs<ExtArgs>>
+    updateMany<T extends ContatoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Formulario.
-     * @param {formularioUpsertArgs} args - Arguments to update or create a Formulario.
+     * Create or update one Contato.
+     * @param {ContatoUpsertArgs} args - Arguments to update or create a Contato.
      * @example
-     * // Update or create a Formulario
-     * const formulario = await prisma.formulario.upsert({
+     * // Update or create a Contato
+     * const contato = await prisma.contato.upsert({
      *   create: {
-     *     // ... data to create a Formulario
+     *     // ... data to create a Contato
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Formulario we want to update
+     *     // ... the filter for the Contato we want to update
      *   }
      * })
     **/
-    upsert<T extends formularioUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, formularioUpsertArgs<ExtArgs>>
-    ): Prisma__formularioClient<$Result.GetResult<Prisma.$formularioPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends ContatoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ContatoUpsertArgs<ExtArgs>>
+    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of Formularios.
+     * Count the number of Contatoes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioCountArgs} args - Arguments to filter Formularios to count.
+     * @param {ContatoCountArgs} args - Arguments to filter Contatoes to count.
      * @example
-     * // Count the number of Formularios
-     * const count = await prisma.formulario.count({
+     * // Count the number of Contatoes
+     * const count = await prisma.contato.count({
      *   where: {
-     *     // ... the filter for the Formularios we want to count
+     *     // ... the filter for the Contatoes we want to count
      *   }
      * })
     **/
-    count<T extends formularioCountArgs>(
-      args?: Subset<T, formularioCountArgs>,
+    count<T extends ContatoCountArgs>(
+      args?: Subset<T, ContatoCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FormularioCountAggregateOutputType>
+          : GetScalarType<T['select'], ContatoCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Formulario.
+     * Allows you to perform aggregations operations on a Contato.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FormularioAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ContatoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1486,13 +1519,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FormularioAggregateArgs>(args: Subset<T, FormularioAggregateArgs>): Prisma.PrismaPromise<GetFormularioAggregateType<T>>
+    aggregate<T extends ContatoAggregateArgs>(args: Subset<T, ContatoAggregateArgs>): Prisma.PrismaPromise<GetContatoAggregateType<T>>
 
     /**
-     * Group by Formulario.
+     * Group by Contato.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {formularioGroupByArgs} args - Group by arguments.
+     * @param {ContatoGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1507,14 +1540,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends formularioGroupByArgs,
+      T extends ContatoGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: formularioGroupByArgs['orderBy'] }
-        : { orderBy?: formularioGroupByArgs['orderBy'] },
+        ? { orderBy: ContatoGroupByArgs['orderBy'] }
+        : { orderBy?: ContatoGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1563,20 +1596,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, formularioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFormularioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ContatoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContatoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the formulario model
+   * Fields of the Contato model
    */
-  readonly fields: formularioFieldRefs;
+  readonly fields: ContatoFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for formulario.
+   * The delegate class that acts as a "Promise-like" for Contato.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__formularioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ContatoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
 
@@ -1605,488 +1638,504 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the formulario model
+   * Fields of the Contato model
    */ 
-  interface formularioFieldRefs {
-    readonly id: FieldRef<"formulario", 'String'>
-    readonly name: FieldRef<"formulario", 'String'>
-    readonly email: FieldRef<"formulario", 'String'>
-    readonly phone: FieldRef<"formulario", 'String'>
-    readonly created_at: FieldRef<"formulario", 'DateTime'>
+  interface ContatoFieldRefs {
+    readonly id: FieldRef<"Contato", 'String'>
+    readonly name: FieldRef<"Contato", 'String'>
+    readonly email: FieldRef<"Contato", 'String'>
+    readonly phone: FieldRef<"Contato", 'String'>
+    readonly created_at: FieldRef<"Contato", 'DateTime'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * formulario findUnique
+   * Contato findUnique
    */
-  export type formularioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter, which formulario to fetch.
+     * Filter, which Contato to fetch.
      */
-    where: formularioWhereUniqueInput
+    where: ContatoWhereUniqueInput
   }
 
 
   /**
-   * formulario findUniqueOrThrow
+   * Contato findUniqueOrThrow
    */
-  export type formularioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter, which formulario to fetch.
+     * Filter, which Contato to fetch.
      */
-    where: formularioWhereUniqueInput
+    where: ContatoWhereUniqueInput
   }
 
 
   /**
-   * formulario findFirst
+   * Contato findFirst
    */
-  export type formularioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter, which formulario to fetch.
+     * Filter, which Contato to fetch.
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of formularios to fetch.
+     * Determine the order of Contatoes to fetch.
      */
-    orderBy?: formularioOrderByWithRelationAndSearchRelevanceInput | formularioOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for formularios.
+     * Sets the position for searching for Contatoes.
      */
-    cursor?: formularioWhereUniqueInput
+    cursor?: ContatoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` formularios from the position of the cursor.
+     * Take `±n` Contatoes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` formularios.
+     * Skip the first `n` Contatoes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of formularios.
+     * Filter by unique combinations of Contatoes.
      */
-    distinct?: FormularioScalarFieldEnum | FormularioScalarFieldEnum[]
+    distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
 
 
   /**
-   * formulario findFirstOrThrow
+   * Contato findFirstOrThrow
    */
-  export type formularioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter, which formulario to fetch.
+     * Filter, which Contato to fetch.
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of formularios to fetch.
+     * Determine the order of Contatoes to fetch.
      */
-    orderBy?: formularioOrderByWithRelationAndSearchRelevanceInput | formularioOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for formularios.
+     * Sets the position for searching for Contatoes.
      */
-    cursor?: formularioWhereUniqueInput
+    cursor?: ContatoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` formularios from the position of the cursor.
+     * Take `±n` Contatoes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` formularios.
+     * Skip the first `n` Contatoes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of formularios.
+     * Filter by unique combinations of Contatoes.
      */
-    distinct?: FormularioScalarFieldEnum | FormularioScalarFieldEnum[]
+    distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
 
 
   /**
-   * formulario findMany
+   * Contato findMany
    */
-  export type formularioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter, which formularios to fetch.
+     * Filter, which Contatoes to fetch.
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of formularios to fetch.
+     * Determine the order of Contatoes to fetch.
      */
-    orderBy?: formularioOrderByWithRelationAndSearchRelevanceInput | formularioOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing formularios.
+     * Sets the position for listing Contatoes.
      */
-    cursor?: formularioWhereUniqueInput
+    cursor?: ContatoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` formularios from the position of the cursor.
+     * Take `±n` Contatoes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` formularios.
+     * Skip the first `n` Contatoes.
      */
     skip?: number
-    distinct?: FormularioScalarFieldEnum | FormularioScalarFieldEnum[]
+    distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
 
 
   /**
-   * formulario create
+   * Contato create
    */
-  export type formularioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * The data needed to create a formulario.
+     * The data needed to create a Contato.
      */
-    data: XOR<formularioCreateInput, formularioUncheckedCreateInput>
+    data: XOR<ContatoCreateInput, ContatoUncheckedCreateInput>
   }
 
 
   /**
-   * formulario createMany
+   * Contato createMany
    */
-  export type formularioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many formularios.
+     * The data used to create many Contatoes.
      */
-    data: formularioCreateManyInput | formularioCreateManyInput[]
+    data: ContatoCreateManyInput | ContatoCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * formulario update
+   * Contato update
    */
-  export type formularioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * The data needed to update a formulario.
+     * The data needed to update a Contato.
      */
-    data: XOR<formularioUpdateInput, formularioUncheckedUpdateInput>
+    data: XOR<ContatoUpdateInput, ContatoUncheckedUpdateInput>
     /**
-     * Choose, which formulario to update.
+     * Choose, which Contato to update.
      */
-    where: formularioWhereUniqueInput
+    where: ContatoWhereUniqueInput
   }
 
 
   /**
-   * formulario updateMany
+   * Contato updateMany
    */
-  export type formularioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update formularios.
+     * The data used to update Contatoes.
      */
-    data: XOR<formularioUpdateManyMutationInput, formularioUncheckedUpdateManyInput>
+    data: XOR<ContatoUpdateManyMutationInput, ContatoUncheckedUpdateManyInput>
     /**
-     * Filter which formularios to update
+     * Filter which Contatoes to update
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
   }
 
 
   /**
-   * formulario upsert
+   * Contato upsert
    */
-  export type formularioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * The filter to search for the formulario to update in case it exists.
+     * The filter to search for the Contato to update in case it exists.
      */
-    where: formularioWhereUniqueInput
+    where: ContatoWhereUniqueInput
     /**
-     * In case the formulario found by the `where` argument doesn't exist, create a new formulario with this data.
+     * In case the Contato found by the `where` argument doesn't exist, create a new Contato with this data.
      */
-    create: XOR<formularioCreateInput, formularioUncheckedCreateInput>
+    create: XOR<ContatoCreateInput, ContatoUncheckedCreateInput>
     /**
-     * In case the formulario was found with the provided `where` argument, update it with this data.
+     * In case the Contato was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<formularioUpdateInput, formularioUncheckedUpdateInput>
+    update: XOR<ContatoUpdateInput, ContatoUncheckedUpdateInput>
   }
 
 
   /**
-   * formulario delete
+   * Contato delete
    */
-  export type formularioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
     /**
-     * Filter which formulario to delete.
+     * Filter which Contato to delete.
      */
-    where: formularioWhereUniqueInput
+    where: ContatoWhereUniqueInput
   }
 
 
   /**
-   * formulario deleteMany
+   * Contato deleteMany
    */
-  export type formularioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which formularios to delete
+     * Filter which Contatoes to delete
      */
-    where?: formularioWhereInput
+    where?: ContatoWhereInput
   }
 
 
   /**
-   * formulario without action
+   * Contato without action
    */
-  export type formularioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ContatoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the formulario
+     * Select specific fields to fetch from the Contato
      */
-    select?: formularioSelect<ExtArgs> | null
+    select?: ContatoSelect<ExtArgs> | null
   }
 
 
 
   /**
-   * Model artigos
+   * Model Artigo
    */
 
-  export type AggregateArtigos = {
-    _count: ArtigosCountAggregateOutputType | null
-    _min: ArtigosMinAggregateOutputType | null
-    _max: ArtigosMaxAggregateOutputType | null
+  export type AggregateArtigo = {
+    _count: ArtigoCountAggregateOutputType | null
+    _min: ArtigoMinAggregateOutputType | null
+    _max: ArtigoMaxAggregateOutputType | null
   }
 
-  export type ArtigosMinAggregateOutputType = {
+  export type ArtigoMinAggregateOutputType = {
     id: string | null
     slug: string | null
     title: string | null
     img: string | null
     content: string | null
     created_at: Date | null
+    tagId: string | null
   }
 
-  export type ArtigosMaxAggregateOutputType = {
+  export type ArtigoMaxAggregateOutputType = {
     id: string | null
     slug: string | null
     title: string | null
     img: string | null
     content: string | null
     created_at: Date | null
+    tagId: string | null
   }
 
-  export type ArtigosCountAggregateOutputType = {
+  export type ArtigoCountAggregateOutputType = {
     id: number
     slug: number
     title: number
     img: number
     content: number
     created_at: number
+    tagId: number
     _all: number
   }
 
 
-  export type ArtigosMinAggregateInputType = {
+  export type ArtigoMinAggregateInputType = {
     id?: true
     slug?: true
     title?: true
     img?: true
     content?: true
     created_at?: true
+    tagId?: true
   }
 
-  export type ArtigosMaxAggregateInputType = {
+  export type ArtigoMaxAggregateInputType = {
     id?: true
     slug?: true
     title?: true
     img?: true
     content?: true
     created_at?: true
+    tagId?: true
   }
 
-  export type ArtigosCountAggregateInputType = {
+  export type ArtigoCountAggregateInputType = {
     id?: true
     slug?: true
     title?: true
     img?: true
     content?: true
     created_at?: true
+    tagId?: true
     _all?: true
   }
 
-  export type ArtigosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which artigos to aggregate.
+     * Filter which Artigo to aggregate.
      */
-    where?: artigosWhereInput
+    where?: ArtigoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of artigos to fetch.
+     * Determine the order of Artigos to fetch.
      */
-    orderBy?: artigosOrderByWithRelationAndSearchRelevanceInput | artigosOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: artigosWhereUniqueInput
+    cursor?: ArtigoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` artigos from the position of the cursor.
+     * Take `±n` Artigos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` artigos.
+     * Skip the first `n` Artigos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned artigos
+     * Count returned Artigos
     **/
-    _count?: true | ArtigosCountAggregateInputType
+    _count?: true | ArtigoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ArtigosMinAggregateInputType
+    _min?: ArtigoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ArtigosMaxAggregateInputType
+    _max?: ArtigoMaxAggregateInputType
   }
 
-  export type GetArtigosAggregateType<T extends ArtigosAggregateArgs> = {
-        [P in keyof T & keyof AggregateArtigos]: P extends '_count' | 'count'
+  export type GetArtigoAggregateType<T extends ArtigoAggregateArgs> = {
+        [P in keyof T & keyof AggregateArtigo]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateArtigos[P]>
-      : GetScalarType<T[P], AggregateArtigos[P]>
+        : GetScalarType<T[P], AggregateArtigo[P]>
+      : GetScalarType<T[P], AggregateArtigo[P]>
   }
 
 
 
 
-  export type artigosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: artigosWhereInput
-    orderBy?: artigosOrderByWithAggregationInput | artigosOrderByWithAggregationInput[]
-    by: ArtigosScalarFieldEnum[] | ArtigosScalarFieldEnum
-    having?: artigosScalarWhereWithAggregatesInput
+  export type ArtigoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ArtigoWhereInput
+    orderBy?: ArtigoOrderByWithAggregationInput | ArtigoOrderByWithAggregationInput[]
+    by: ArtigoScalarFieldEnum[] | ArtigoScalarFieldEnum
+    having?: ArtigoScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ArtigosCountAggregateInputType | true
-    _min?: ArtigosMinAggregateInputType
-    _max?: ArtigosMaxAggregateInputType
+    _count?: ArtigoCountAggregateInputType | true
+    _min?: ArtigoMinAggregateInputType
+    _max?: ArtigoMaxAggregateInputType
   }
 
-  export type ArtigosGroupByOutputType = {
+  export type ArtigoGroupByOutputType = {
     id: string
     slug: string
     title: string
     img: string
     content: string
     created_at: Date
-    _count: ArtigosCountAggregateOutputType | null
-    _min: ArtigosMinAggregateOutputType | null
-    _max: ArtigosMaxAggregateOutputType | null
+    tagId: string
+    _count: ArtigoCountAggregateOutputType | null
+    _min: ArtigoMinAggregateOutputType | null
+    _max: ArtigoMaxAggregateOutputType | null
   }
 
-  type GetArtigosGroupByPayload<T extends artigosGroupByArgs> = Prisma.PrismaPromise<
+  type GetArtigoGroupByPayload<T extends ArtigoGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ArtigosGroupByOutputType, T['by']> &
+      PickEnumerable<ArtigoGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ArtigosGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ArtigoGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ArtigosGroupByOutputType[P]>
-            : GetScalarType<T[P], ArtigosGroupByOutputType[P]>
+              : GetScalarType<T[P], ArtigoGroupByOutputType[P]>
+            : GetScalarType<T[P], ArtigoGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type artigosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ArtigoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     slug?: boolean
     title?: boolean
     img?: boolean
     content?: boolean
     created_at?: boolean
-  }, ExtArgs["result"]["artigos"]>
+    tagId?: boolean
+    tag?: boolean | TagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["artigo"]>
 
-  export type artigosSelectScalar = {
+  export type ArtigoSelectScalar = {
     id?: boolean
     slug?: boolean
     title?: boolean
     img?: boolean
     content?: boolean
     created_at?: boolean
+    tagId?: boolean
+  }
+
+  export type ArtigoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tag?: boolean | TagDefaultArgs<ExtArgs>
   }
 
 
-  export type $artigosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "artigos"
-    objects: {}
+  export type $ArtigoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Artigo"
+    objects: {
+      tag: Prisma.$TagPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       slug: string
@@ -2094,160 +2143,161 @@ export namespace Prisma {
       img: string
       content: string
       created_at: Date
-    }, ExtArgs["result"]["artigos"]>
+      tagId: string
+    }, ExtArgs["result"]["artigo"]>
     composites: {}
   }
 
 
-  type artigosGetPayload<S extends boolean | null | undefined | artigosDefaultArgs> = $Result.GetResult<Prisma.$artigosPayload, S>
+  type ArtigoGetPayload<S extends boolean | null | undefined | ArtigoDefaultArgs> = $Result.GetResult<Prisma.$ArtigoPayload, S>
 
-  type artigosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<artigosFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: ArtigosCountAggregateInputType | true
+  type ArtigoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ArtigoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ArtigoCountAggregateInputType | true
     }
 
-  export interface artigosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['artigos'], meta: { name: 'artigos' } }
+  export interface ArtigoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Artigo'], meta: { name: 'Artigo' } }
     /**
-     * Find zero or one Artigos that matches the filter.
-     * @param {artigosFindUniqueArgs} args - Arguments to find a Artigos
+     * Find zero or one Artigo that matches the filter.
+     * @param {ArtigoFindUniqueArgs} args - Arguments to find a Artigo
      * @example
-     * // Get one Artigos
-     * const artigos = await prisma.artigos.findUnique({
+     * // Get one Artigo
+     * const artigo = await prisma.artigo.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends artigosFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosFindUniqueArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends ArtigoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoFindUniqueArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Artigos that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Artigo that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {artigosFindUniqueOrThrowArgs} args - Arguments to find a Artigos
+     * @param {ArtigoFindUniqueOrThrowArgs} args - Arguments to find a Artigo
      * @example
-     * // Get one Artigos
-     * const artigos = await prisma.artigos.findUniqueOrThrow({
+     * // Get one Artigo
+     * const artigo = await prisma.artigo.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends artigosFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends ArtigoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Artigos that matches the filter.
+     * Find the first Artigo that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosFindFirstArgs} args - Arguments to find a Artigos
+     * @param {ArtigoFindFirstArgs} args - Arguments to find a Artigo
      * @example
-     * // Get one Artigos
-     * const artigos = await prisma.artigos.findFirst({
+     * // Get one Artigo
+     * const artigo = await prisma.artigo.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends artigosFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosFindFirstArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends ArtigoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoFindFirstArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Artigos that matches the filter or
+     * Find the first Artigo that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosFindFirstOrThrowArgs} args - Arguments to find a Artigos
+     * @param {ArtigoFindFirstOrThrowArgs} args - Arguments to find a Artigo
      * @example
-     * // Get one Artigos
-     * const artigos = await prisma.artigos.findFirstOrThrow({
+     * // Get one Artigo
+     * const artigo = await prisma.artigo.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends artigosFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends ArtigoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Artigos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ArtigoFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Artigos
-     * const artigos = await prisma.artigos.findMany()
+     * const artigos = await prisma.artigo.findMany()
      * 
      * // Get first 10 Artigos
-     * const artigos = await prisma.artigos.findMany({ take: 10 })
+     * const artigos = await prisma.artigo.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const artigosWithIdOnly = await prisma.artigos.findMany({ select: { id: true } })
+     * const artigoWithIdOnly = await prisma.artigo.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends artigosFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends ArtigoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Artigos.
-     * @param {artigosCreateArgs} args - Arguments to create a Artigos.
+     * Create a Artigo.
+     * @param {ArtigoCreateArgs} args - Arguments to create a Artigo.
      * @example
-     * // Create one Artigos
-     * const Artigos = await prisma.artigos.create({
+     * // Create one Artigo
+     * const Artigo = await prisma.artigo.create({
      *   data: {
-     *     // ... data to create a Artigos
+     *     // ... data to create a Artigo
      *   }
      * })
      * 
     **/
-    create<T extends artigosCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosCreateArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends ArtigoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoCreateArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Artigos.
-     *     @param {artigosCreateManyArgs} args - Arguments to create many Artigos.
+     *     @param {ArtigoCreateManyArgs} args - Arguments to create many Artigos.
      *     @example
      *     // Create many Artigos
-     *     const artigos = await prisma.artigos.createMany({
+     *     const artigo = await prisma.artigo.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends artigosCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosCreateManyArgs<ExtArgs>>
+    createMany<T extends ArtigoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Artigos.
-     * @param {artigosDeleteArgs} args - Arguments to delete one Artigos.
+     * Delete a Artigo.
+     * @param {ArtigoDeleteArgs} args - Arguments to delete one Artigo.
      * @example
-     * // Delete one Artigos
-     * const Artigos = await prisma.artigos.delete({
+     * // Delete one Artigo
+     * const Artigo = await prisma.artigo.delete({
      *   where: {
-     *     // ... filter to delete one Artigos
+     *     // ... filter to delete one Artigo
      *   }
      * })
      * 
     **/
-    delete<T extends artigosDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosDeleteArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends ArtigoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoDeleteArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Artigos.
-     * @param {artigosUpdateArgs} args - Arguments to update one Artigos.
+     * Update one Artigo.
+     * @param {ArtigoUpdateArgs} args - Arguments to update one Artigo.
      * @example
-     * // Update one Artigos
-     * const artigos = await prisma.artigos.update({
+     * // Update one Artigo
+     * const artigo = await prisma.artigo.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2257,34 +2307,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends artigosUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosUpdateArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends ArtigoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoUpdateArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Artigos.
-     * @param {artigosDeleteManyArgs} args - Arguments to filter Artigos to delete.
+     * @param {ArtigoDeleteManyArgs} args - Arguments to filter Artigos to delete.
      * @example
      * // Delete a few Artigos
-     * const { count } = await prisma.artigos.deleteMany({
+     * const { count } = await prisma.artigo.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends artigosDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, artigosDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends ArtigoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ArtigoDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Artigos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ArtigoUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Artigos
-     * const artigos = await prisma.artigos.updateMany({
+     * const artigo = await prisma.artigo.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2294,59 +2344,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends artigosUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosUpdateManyArgs<ExtArgs>>
+    updateMany<T extends ArtigoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Artigos.
-     * @param {artigosUpsertArgs} args - Arguments to update or create a Artigos.
+     * Create or update one Artigo.
+     * @param {ArtigoUpsertArgs} args - Arguments to update or create a Artigo.
      * @example
-     * // Update or create a Artigos
-     * const artigos = await prisma.artigos.upsert({
+     * // Update or create a Artigo
+     * const artigo = await prisma.artigo.upsert({
      *   create: {
-     *     // ... data to create a Artigos
+     *     // ... data to create a Artigo
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Artigos we want to update
+     *     // ... the filter for the Artigo we want to update
      *   }
      * })
     **/
-    upsert<T extends artigosUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, artigosUpsertArgs<ExtArgs>>
-    ): Prisma__artigosClient<$Result.GetResult<Prisma.$artigosPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends ArtigoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ArtigoUpsertArgs<ExtArgs>>
+    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Artigos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosCountArgs} args - Arguments to filter Artigos to count.
+     * @param {ArtigoCountArgs} args - Arguments to filter Artigos to count.
      * @example
      * // Count the number of Artigos
-     * const count = await prisma.artigos.count({
+     * const count = await prisma.artigo.count({
      *   where: {
      *     // ... the filter for the Artigos we want to count
      *   }
      * })
     **/
-    count<T extends artigosCountArgs>(
-      args?: Subset<T, artigosCountArgs>,
+    count<T extends ArtigoCountArgs>(
+      args?: Subset<T, ArtigoCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ArtigosCountAggregateOutputType>
+          : GetScalarType<T['select'], ArtigoCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Artigos.
+     * Allows you to perform aggregations operations on a Artigo.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArtigosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ArtigoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2366,13 +2416,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ArtigosAggregateArgs>(args: Subset<T, ArtigosAggregateArgs>): Prisma.PrismaPromise<GetArtigosAggregateType<T>>
+    aggregate<T extends ArtigoAggregateArgs>(args: Subset<T, ArtigoAggregateArgs>): Prisma.PrismaPromise<GetArtigoAggregateType<T>>
 
     /**
-     * Group by Artigos.
+     * Group by Artigo.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {artigosGroupByArgs} args - Group by arguments.
+     * @param {ArtigoGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2387,14 +2437,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends artigosGroupByArgs,
+      T extends ArtigoGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: artigosGroupByArgs['orderBy'] }
-        : { orderBy?: artigosGroupByArgs['orderBy'] },
+        ? { orderBy: ArtigoGroupByArgs['orderBy'] }
+        : { orderBy?: ArtigoGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2443,22 +2493,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, artigosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetArtigosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ArtigoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetArtigoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the artigos model
+   * Fields of the Artigo model
    */
-  readonly fields: artigosFieldRefs;
+  readonly fields: ArtigoFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for artigos.
+   * The delegate class that acts as a "Promise-like" for Artigo.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__artigosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ArtigoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    tag<T extends TagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TagDefaultArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2485,325 +2536,366 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the artigos model
+   * Fields of the Artigo model
    */ 
-  interface artigosFieldRefs {
-    readonly id: FieldRef<"artigos", 'String'>
-    readonly slug: FieldRef<"artigos", 'String'>
-    readonly title: FieldRef<"artigos", 'String'>
-    readonly img: FieldRef<"artigos", 'String'>
-    readonly content: FieldRef<"artigos", 'String'>
-    readonly created_at: FieldRef<"artigos", 'DateTime'>
+  interface ArtigoFieldRefs {
+    readonly id: FieldRef<"Artigo", 'String'>
+    readonly slug: FieldRef<"Artigo", 'String'>
+    readonly title: FieldRef<"Artigo", 'String'>
+    readonly img: FieldRef<"Artigo", 'String'>
+    readonly content: FieldRef<"Artigo", 'String'>
+    readonly created_at: FieldRef<"Artigo", 'DateTime'>
+    readonly tagId: FieldRef<"Artigo", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * artigos findUnique
+   * Artigo findUnique
    */
-  export type artigosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter, which artigos to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: artigosWhereUniqueInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter, which Artigo to fetch.
+     */
+    where: ArtigoWhereUniqueInput
   }
 
 
   /**
-   * artigos findUniqueOrThrow
+   * Artigo findUniqueOrThrow
    */
-  export type artigosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter, which artigos to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: artigosWhereUniqueInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter, which Artigo to fetch.
+     */
+    where: ArtigoWhereUniqueInput
   }
 
 
   /**
-   * artigos findFirst
+   * Artigo findFirst
    */
-  export type artigosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter, which artigos to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: artigosWhereInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter, which Artigo to fetch.
+     */
+    where?: ArtigoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of artigos to fetch.
+     * Determine the order of Artigos to fetch.
      */
-    orderBy?: artigosOrderByWithRelationAndSearchRelevanceInput | artigosOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for artigos.
+     * Sets the position for searching for Artigos.
      */
-    cursor?: artigosWhereUniqueInput
+    cursor?: ArtigoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` artigos from the position of the cursor.
+     * Take `±n` Artigos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` artigos.
+     * Skip the first `n` Artigos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of artigos.
+     * Filter by unique combinations of Artigos.
      */
-    distinct?: ArtigosScalarFieldEnum | ArtigosScalarFieldEnum[]
+    distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
 
 
   /**
-   * artigos findFirstOrThrow
+   * Artigo findFirstOrThrow
    */
-  export type artigosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter, which artigos to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: artigosWhereInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter, which Artigo to fetch.
+     */
+    where?: ArtigoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of artigos to fetch.
+     * Determine the order of Artigos to fetch.
      */
-    orderBy?: artigosOrderByWithRelationAndSearchRelevanceInput | artigosOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for artigos.
+     * Sets the position for searching for Artigos.
      */
-    cursor?: artigosWhereUniqueInput
+    cursor?: ArtigoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` artigos from the position of the cursor.
+     * Take `±n` Artigos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` artigos.
+     * Skip the first `n` Artigos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of artigos.
+     * Filter by unique combinations of Artigos.
      */
-    distinct?: ArtigosScalarFieldEnum | ArtigosScalarFieldEnum[]
+    distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
 
 
   /**
-   * artigos findMany
+   * Artigo findMany
    */
-  export type artigosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter, which artigos to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: artigosWhereInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter, which Artigos to fetch.
+     */
+    where?: ArtigoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of artigos to fetch.
+     * Determine the order of Artigos to fetch.
      */
-    orderBy?: artigosOrderByWithRelationAndSearchRelevanceInput | artigosOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing artigos.
+     * Sets the position for listing Artigos.
      */
-    cursor?: artigosWhereUniqueInput
+    cursor?: ArtigoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` artigos from the position of the cursor.
+     * Take `±n` Artigos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` artigos.
+     * Skip the first `n` Artigos.
      */
     skip?: number
-    distinct?: ArtigosScalarFieldEnum | ArtigosScalarFieldEnum[]
+    distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
 
 
   /**
-   * artigos create
+   * Artigo create
    */
-  export type artigosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * The data needed to create a artigos.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<artigosCreateInput, artigosUncheckedCreateInput>
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Artigo.
+     */
+    data: XOR<ArtigoCreateInput, ArtigoUncheckedCreateInput>
   }
 
 
   /**
-   * artigos createMany
+   * Artigo createMany
    */
-  export type artigosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many artigos.
+     * The data used to create many Artigos.
      */
-    data: artigosCreateManyInput | artigosCreateManyInput[]
+    data: ArtigoCreateManyInput | ArtigoCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * artigos update
+   * Artigo update
    */
-  export type artigosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * The data needed to update a artigos.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<artigosUpdateInput, artigosUncheckedUpdateInput>
+    include?: ArtigoInclude<ExtArgs> | null
     /**
-     * Choose, which artigos to update.
+     * The data needed to update a Artigo.
      */
-    where: artigosWhereUniqueInput
+    data: XOR<ArtigoUpdateInput, ArtigoUncheckedUpdateInput>
+    /**
+     * Choose, which Artigo to update.
+     */
+    where: ArtigoWhereUniqueInput
   }
 
 
   /**
-   * artigos updateMany
+   * Artigo updateMany
    */
-  export type artigosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update artigos.
+     * The data used to update Artigos.
      */
-    data: XOR<artigosUpdateManyMutationInput, artigosUncheckedUpdateManyInput>
+    data: XOR<ArtigoUpdateManyMutationInput, ArtigoUncheckedUpdateManyInput>
     /**
-     * Filter which artigos to update
+     * Filter which Artigos to update
      */
-    where?: artigosWhereInput
+    where?: ArtigoWhereInput
   }
 
 
   /**
-   * artigos upsert
+   * Artigo upsert
    */
-  export type artigosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * The filter to search for the artigos to update in case it exists.
+     * Choose, which related nodes to fetch as well.
      */
-    where: artigosWhereUniqueInput
+    include?: ArtigoInclude<ExtArgs> | null
     /**
-     * In case the artigos found by the `where` argument doesn't exist, create a new artigos with this data.
+     * The filter to search for the Artigo to update in case it exists.
      */
-    create: XOR<artigosCreateInput, artigosUncheckedCreateInput>
+    where: ArtigoWhereUniqueInput
     /**
-     * In case the artigos was found with the provided `where` argument, update it with this data.
+     * In case the Artigo found by the `where` argument doesn't exist, create a new Artigo with this data.
      */
-    update: XOR<artigosUpdateInput, artigosUncheckedUpdateInput>
+    create: XOR<ArtigoCreateInput, ArtigoUncheckedCreateInput>
+    /**
+     * In case the Artigo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ArtigoUpdateInput, ArtigoUncheckedUpdateInput>
   }
 
 
   /**
-   * artigos delete
+   * Artigo delete
    */
-  export type artigosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Filter which artigos to delete.
+     * Choose, which related nodes to fetch as well.
      */
-    where: artigosWhereUniqueInput
+    include?: ArtigoInclude<ExtArgs> | null
+    /**
+     * Filter which Artigo to delete.
+     */
+    where: ArtigoWhereUniqueInput
   }
 
 
   /**
-   * artigos deleteMany
+   * Artigo deleteMany
    */
-  export type artigosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which artigos to delete
+     * Filter which Artigos to delete
      */
-    where?: artigosWhereInput
+    where?: ArtigoWhereInput
   }
 
 
   /**
-   * artigos without action
+   * Artigo without action
    */
-  export type artigosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ArtigoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the artigos
+     * Select specific fields to fetch from the Artigo
      */
-    select?: artigosSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArtigoInclude<ExtArgs> | null
   }
 
 
 
   /**
-   * Model tags
+   * Model Tag
    */
 
-  export type AggregateTags = {
-    _count: TagsCountAggregateOutputType | null
-    _min: TagsMinAggregateOutputType | null
-    _max: TagsMaxAggregateOutputType | null
+  export type AggregateTag = {
+    _count: TagCountAggregateOutputType | null
+    _min: TagMinAggregateOutputType | null
+    _max: TagMaxAggregateOutputType | null
   }
 
-  export type TagsMinAggregateOutputType = {
+  export type TagMinAggregateOutputType = {
     id: string | null
     title: string | null
     slug: string | null
   }
 
-  export type TagsMaxAggregateOutputType = {
+  export type TagMaxAggregateOutputType = {
     id: string | null
     title: string | null
     slug: string | null
   }
 
-  export type TagsCountAggregateOutputType = {
+  export type TagCountAggregateOutputType = {
     id: number
     title: number
     slug: number
@@ -2811,294 +2903,303 @@ export namespace Prisma {
   }
 
 
-  export type TagsMinAggregateInputType = {
+  export type TagMinAggregateInputType = {
     id?: true
     title?: true
     slug?: true
   }
 
-  export type TagsMaxAggregateInputType = {
+  export type TagMaxAggregateInputType = {
     id?: true
     title?: true
     slug?: true
   }
 
-  export type TagsCountAggregateInputType = {
+  export type TagCountAggregateInputType = {
     id?: true
     title?: true
     slug?: true
     _all?: true
   }
 
-  export type TagsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which tags to aggregate.
+     * Filter which Tag to aggregate.
      */
-    where?: tagsWhereInput
+    where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tags to fetch.
+     * Determine the order of Tags to fetch.
      */
-    orderBy?: tagsOrderByWithRelationAndSearchRelevanceInput | tagsOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: tagsWhereUniqueInput
+    cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tags from the position of the cursor.
+     * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tags.
+     * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned tags
+     * Count returned Tags
     **/
-    _count?: true | TagsCountAggregateInputType
+    _count?: true | TagCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TagsMinAggregateInputType
+    _min?: TagMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TagsMaxAggregateInputType
+    _max?: TagMaxAggregateInputType
   }
 
-  export type GetTagsAggregateType<T extends TagsAggregateArgs> = {
-        [P in keyof T & keyof AggregateTags]: P extends '_count' | 'count'
+  export type GetTagAggregateType<T extends TagAggregateArgs> = {
+        [P in keyof T & keyof AggregateTag]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTags[P]>
-      : GetScalarType<T[P], AggregateTags[P]>
+        : GetScalarType<T[P], AggregateTag[P]>
+      : GetScalarType<T[P], AggregateTag[P]>
   }
 
 
 
 
-  export type tagsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: tagsWhereInput
-    orderBy?: tagsOrderByWithAggregationInput | tagsOrderByWithAggregationInput[]
-    by: TagsScalarFieldEnum[] | TagsScalarFieldEnum
-    having?: tagsScalarWhereWithAggregatesInput
+  export type TagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TagWhereInput
+    orderBy?: TagOrderByWithAggregationInput | TagOrderByWithAggregationInput[]
+    by: TagScalarFieldEnum[] | TagScalarFieldEnum
+    having?: TagScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TagsCountAggregateInputType | true
-    _min?: TagsMinAggregateInputType
-    _max?: TagsMaxAggregateInputType
+    _count?: TagCountAggregateInputType | true
+    _min?: TagMinAggregateInputType
+    _max?: TagMaxAggregateInputType
   }
 
-  export type TagsGroupByOutputType = {
+  export type TagGroupByOutputType = {
     id: string
     title: string
     slug: string
-    _count: TagsCountAggregateOutputType | null
-    _min: TagsMinAggregateOutputType | null
-    _max: TagsMaxAggregateOutputType | null
+    _count: TagCountAggregateOutputType | null
+    _min: TagMinAggregateOutputType | null
+    _max: TagMaxAggregateOutputType | null
   }
 
-  type GetTagsGroupByPayload<T extends tagsGroupByArgs> = Prisma.PrismaPromise<
+  type GetTagGroupByPayload<T extends TagGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TagsGroupByOutputType, T['by']> &
+      PickEnumerable<TagGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TagsGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof TagGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TagsGroupByOutputType[P]>
-            : GetScalarType<T[P], TagsGroupByOutputType[P]>
+              : GetScalarType<T[P], TagGroupByOutputType[P]>
+            : GetScalarType<T[P], TagGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type tagsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type TagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     slug?: boolean
-  }, ExtArgs["result"]["tags"]>
+    artigos?: boolean | Tag$artigosArgs<ExtArgs>
+    _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tag"]>
 
-  export type tagsSelectScalar = {
+  export type TagSelectScalar = {
     id?: boolean
     title?: boolean
     slug?: boolean
   }
 
+  export type TagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    artigos?: boolean | Tag$artigosArgs<ExtArgs>
+    _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
-  export type $tagsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "tags"
-    objects: {}
+
+  export type $TagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tag"
+    objects: {
+      artigos: Prisma.$ArtigoPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
       slug: string
-    }, ExtArgs["result"]["tags"]>
+    }, ExtArgs["result"]["tag"]>
     composites: {}
   }
 
 
-  type tagsGetPayload<S extends boolean | null | undefined | tagsDefaultArgs> = $Result.GetResult<Prisma.$tagsPayload, S>
+  type TagGetPayload<S extends boolean | null | undefined | TagDefaultArgs> = $Result.GetResult<Prisma.$TagPayload, S>
 
-  type tagsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<tagsFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: TagsCountAggregateInputType | true
+  type TagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<TagFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: TagCountAggregateInputType | true
     }
 
-  export interface tagsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['tags'], meta: { name: 'tags' } }
+  export interface TagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tag'], meta: { name: 'Tag' } }
     /**
-     * Find zero or one Tags that matches the filter.
-     * @param {tagsFindUniqueArgs} args - Arguments to find a Tags
+     * Find zero or one Tag that matches the filter.
+     * @param {TagFindUniqueArgs} args - Arguments to find a Tag
      * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findUnique({
+     * // Get one Tag
+     * const tag = await prisma.tag.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends tagsFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsFindUniqueArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends TagFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, TagFindUniqueArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Tags that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one Tag that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {tagsFindUniqueOrThrowArgs} args - Arguments to find a Tags
+     * @param {TagFindUniqueOrThrowArgs} args - Arguments to find a Tag
      * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findUniqueOrThrow({
+     * // Get one Tag
+     * const tag = await prisma.tag.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends tagsFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends TagFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first Tags that matches the filter.
+     * Find the first Tag that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsFindFirstArgs} args - Arguments to find a Tags
+     * @param {TagFindFirstArgs} args - Arguments to find a Tag
      * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findFirst({
+     * // Get one Tag
+     * const tag = await prisma.tag.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends tagsFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsFindFirstArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends TagFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindFirstArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first Tags that matches the filter or
+     * Find the first Tag that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsFindFirstOrThrowArgs} args - Arguments to find a Tags
+     * @param {TagFindFirstOrThrowArgs} args - Arguments to find a Tag
      * @example
-     * // Get one Tags
-     * const tags = await prisma.tags.findFirstOrThrow({
+     * // Get one Tag
+     * const tag = await prisma.tag.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends tagsFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends TagFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Tags that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {TagFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Tags
-     * const tags = await prisma.tags.findMany()
+     * const tags = await prisma.tag.findMany()
      * 
      * // Get first 10 Tags
-     * const tags = await prisma.tags.findMany({ take: 10 })
+     * const tags = await prisma.tag.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const tagsWithIdOnly = await prisma.tags.findMany({ select: { id: true } })
+     * const tagWithIdOnly = await prisma.tag.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends tagsFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends TagFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a Tags.
-     * @param {tagsCreateArgs} args - Arguments to create a Tags.
+     * Create a Tag.
+     * @param {TagCreateArgs} args - Arguments to create a Tag.
      * @example
-     * // Create one Tags
-     * const Tags = await prisma.tags.create({
+     * // Create one Tag
+     * const Tag = await prisma.tag.create({
      *   data: {
-     *     // ... data to create a Tags
+     *     // ... data to create a Tag
      *   }
      * })
      * 
     **/
-    create<T extends tagsCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsCreateArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends TagCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagCreateArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Tags.
-     *     @param {tagsCreateManyArgs} args - Arguments to create many Tags.
+     *     @param {TagCreateManyArgs} args - Arguments to create many Tags.
      *     @example
      *     // Create many Tags
-     *     const tags = await prisma.tags.createMany({
+     *     const tag = await prisma.tag.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends tagsCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsCreateManyArgs<ExtArgs>>
+    createMany<T extends TagCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Tags.
-     * @param {tagsDeleteArgs} args - Arguments to delete one Tags.
+     * Delete a Tag.
+     * @param {TagDeleteArgs} args - Arguments to delete one Tag.
      * @example
-     * // Delete one Tags
-     * const Tags = await prisma.tags.delete({
+     * // Delete one Tag
+     * const Tag = await prisma.tag.delete({
      *   where: {
-     *     // ... filter to delete one Tags
+     *     // ... filter to delete one Tag
      *   }
      * })
      * 
     **/
-    delete<T extends tagsDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsDeleteArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends TagDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, TagDeleteArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one Tags.
-     * @param {tagsUpdateArgs} args - Arguments to update one Tags.
+     * Update one Tag.
+     * @param {TagUpdateArgs} args - Arguments to update one Tag.
      * @example
-     * // Update one Tags
-     * const tags = await prisma.tags.update({
+     * // Update one Tag
+     * const tag = await prisma.tag.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3108,34 +3209,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends tagsUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsUpdateArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends TagUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpdateArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Tags.
-     * @param {tagsDeleteManyArgs} args - Arguments to filter Tags to delete.
+     * @param {TagDeleteManyArgs} args - Arguments to filter Tags to delete.
      * @example
      * // Delete a few Tags
-     * const { count } = await prisma.tags.deleteMany({
+     * const { count } = await prisma.tag.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends tagsDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, tagsDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends TagDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, TagDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Tags.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {TagUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Tags
-     * const tags = await prisma.tags.updateMany({
+     * const tag = await prisma.tag.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3145,59 +3246,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends tagsUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsUpdateManyArgs<ExtArgs>>
+    updateMany<T extends TagUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Tags.
-     * @param {tagsUpsertArgs} args - Arguments to update or create a Tags.
+     * Create or update one Tag.
+     * @param {TagUpsertArgs} args - Arguments to update or create a Tag.
      * @example
-     * // Update or create a Tags
-     * const tags = await prisma.tags.upsert({
+     * // Update or create a Tag
+     * const tag = await prisma.tag.upsert({
      *   create: {
-     *     // ... data to create a Tags
+     *     // ... data to create a Tag
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Tags we want to update
+     *     // ... the filter for the Tag we want to update
      *   }
      * })
     **/
-    upsert<T extends tagsUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, tagsUpsertArgs<ExtArgs>>
-    ): Prisma__tagsClient<$Result.GetResult<Prisma.$tagsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends TagUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, TagUpsertArgs<ExtArgs>>
+    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Tags.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsCountArgs} args - Arguments to filter Tags to count.
+     * @param {TagCountArgs} args - Arguments to filter Tags to count.
      * @example
      * // Count the number of Tags
-     * const count = await prisma.tags.count({
+     * const count = await prisma.tag.count({
      *   where: {
      *     // ... the filter for the Tags we want to count
      *   }
      * })
     **/
-    count<T extends tagsCountArgs>(
-      args?: Subset<T, tagsCountArgs>,
+    count<T extends TagCountArgs>(
+      args?: Subset<T, TagCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TagsCountAggregateOutputType>
+          : GetScalarType<T['select'], TagCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Tags.
+     * Allows you to perform aggregations operations on a Tag.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {TagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3217,13 +3318,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TagsAggregateArgs>(args: Subset<T, TagsAggregateArgs>): Prisma.PrismaPromise<GetTagsAggregateType<T>>
+    aggregate<T extends TagAggregateArgs>(args: Subset<T, TagAggregateArgs>): Prisma.PrismaPromise<GetTagAggregateType<T>>
 
     /**
-     * Group by Tags.
+     * Group by Tag.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {tagsGroupByArgs} args - Group by arguments.
+     * @param {TagGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3238,14 +3339,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends tagsGroupByArgs,
+      T extends TagGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: tagsGroupByArgs['orderBy'] }
-        : { orderBy?: tagsGroupByArgs['orderBy'] },
+        ? { orderBy: TagGroupByArgs['orderBy'] }
+        : { orderBy?: TagGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3294,22 +3395,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, tagsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, TagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the tags model
+   * Fields of the Tag model
    */
-  readonly fields: tagsFieldRefs;
+  readonly fields: TagFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for tags.
+   * The delegate class that acts as a "Promise-like" for Tag.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__tagsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__TagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    artigos<T extends Tag$artigosArgs<ExtArgs> = {}>(args?: Subset<T, Tag$artigosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3336,295 +3438,356 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the tags model
+   * Fields of the Tag model
    */ 
-  interface tagsFieldRefs {
-    readonly id: FieldRef<"tags", 'String'>
-    readonly title: FieldRef<"tags", 'String'>
-    readonly slug: FieldRef<"tags", 'String'>
+  interface TagFieldRefs {
+    readonly id: FieldRef<"Tag", 'String'>
+    readonly title: FieldRef<"Tag", 'String'>
+    readonly slug: FieldRef<"Tag", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * tags findUnique
+   * Tag findUnique
    */
-  export type tagsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter, which tags to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: tagsWhereUniqueInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where: TagWhereUniqueInput
   }
 
 
   /**
-   * tags findUniqueOrThrow
+   * Tag findUniqueOrThrow
    */
-  export type tagsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter, which tags to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where: tagsWhereUniqueInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where: TagWhereUniqueInput
   }
 
 
   /**
-   * tags findFirst
+   * Tag findFirst
    */
-  export type tagsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter, which tags to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: tagsWhereInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tags to fetch.
+     * Determine the order of Tags to fetch.
      */
-    orderBy?: tagsOrderByWithRelationAndSearchRelevanceInput | tagsOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for tags.
+     * Sets the position for searching for Tags.
      */
-    cursor?: tagsWhereUniqueInput
+    cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tags from the position of the cursor.
+     * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tags.
+     * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of tags.
+     * Filter by unique combinations of Tags.
      */
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
 
   /**
-   * tags findFirstOrThrow
+   * Tag findFirstOrThrow
    */
-  export type tagsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter, which tags to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: tagsWhereInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter, which Tag to fetch.
+     */
+    where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tags to fetch.
+     * Determine the order of Tags to fetch.
      */
-    orderBy?: tagsOrderByWithRelationAndSearchRelevanceInput | tagsOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for tags.
+     * Sets the position for searching for Tags.
      */
-    cursor?: tagsWhereUniqueInput
+    cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tags from the position of the cursor.
+     * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tags.
+     * Skip the first `n` Tags.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of tags.
+     * Filter by unique combinations of Tags.
      */
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
 
   /**
-   * tags findMany
+   * Tag findMany
    */
-  export type tagsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter, which tags to fetch.
+     * Choose, which related nodes to fetch as well.
      */
-    where?: tagsWhereInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter, which Tags to fetch.
+     */
+    where?: TagWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of tags to fetch.
+     * Determine the order of Tags to fetch.
      */
-    orderBy?: tagsOrderByWithRelationAndSearchRelevanceInput | tagsOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing tags.
+     * Sets the position for listing Tags.
      */
-    cursor?: tagsWhereUniqueInput
+    cursor?: TagWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` tags from the position of the cursor.
+     * Take `±n` Tags from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` tags.
+     * Skip the first `n` Tags.
      */
     skip?: number
-    distinct?: TagsScalarFieldEnum | TagsScalarFieldEnum[]
+    distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
 
   /**
-   * tags create
+   * Tag create
    */
-  export type tagsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * The data needed to create a tags.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<tagsCreateInput, tagsUncheckedCreateInput>
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Tag.
+     */
+    data: XOR<TagCreateInput, TagUncheckedCreateInput>
   }
 
 
   /**
-   * tags createMany
+   * Tag createMany
    */
-  export type tagsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many tags.
+     * The data used to create many Tags.
      */
-    data: tagsCreateManyInput | tagsCreateManyInput[]
+    data: TagCreateManyInput | TagCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * tags update
+   * Tag update
    */
-  export type tagsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * The data needed to update a tags.
+     * Choose, which related nodes to fetch as well.
      */
-    data: XOR<tagsUpdateInput, tagsUncheckedUpdateInput>
+    include?: TagInclude<ExtArgs> | null
     /**
-     * Choose, which tags to update.
+     * The data needed to update a Tag.
      */
-    where: tagsWhereUniqueInput
+    data: XOR<TagUpdateInput, TagUncheckedUpdateInput>
+    /**
+     * Choose, which Tag to update.
+     */
+    where: TagWhereUniqueInput
   }
 
 
   /**
-   * tags updateMany
+   * Tag updateMany
    */
-  export type tagsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update tags.
+     * The data used to update Tags.
      */
-    data: XOR<tagsUpdateManyMutationInput, tagsUncheckedUpdateManyInput>
+    data: XOR<TagUpdateManyMutationInput, TagUncheckedUpdateManyInput>
     /**
-     * Filter which tags to update
+     * Filter which Tags to update
      */
-    where?: tagsWhereInput
+    where?: TagWhereInput
   }
 
 
   /**
-   * tags upsert
+   * Tag upsert
    */
-  export type tagsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * The filter to search for the tags to update in case it exists.
+     * Choose, which related nodes to fetch as well.
      */
-    where: tagsWhereUniqueInput
+    include?: TagInclude<ExtArgs> | null
     /**
-     * In case the tags found by the `where` argument doesn't exist, create a new tags with this data.
+     * The filter to search for the Tag to update in case it exists.
      */
-    create: XOR<tagsCreateInput, tagsUncheckedCreateInput>
+    where: TagWhereUniqueInput
     /**
-     * In case the tags was found with the provided `where` argument, update it with this data.
+     * In case the Tag found by the `where` argument doesn't exist, create a new Tag with this data.
      */
-    update: XOR<tagsUpdateInput, tagsUncheckedUpdateInput>
+    create: XOR<TagCreateInput, TagUncheckedCreateInput>
+    /**
+     * In case the Tag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TagUpdateInput, TagUncheckedUpdateInput>
   }
 
 
   /**
-   * tags delete
+   * Tag delete
    */
-  export type tagsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Tag
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: TagSelect<ExtArgs> | null
     /**
-     * Filter which tags to delete.
+     * Choose, which related nodes to fetch as well.
      */
-    where: tagsWhereUniqueInput
+    include?: TagInclude<ExtArgs> | null
+    /**
+     * Filter which Tag to delete.
+     */
+    where: TagWhereUniqueInput
   }
 
 
   /**
-   * tags deleteMany
+   * Tag deleteMany
    */
-  export type tagsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which tags to delete
+     * Filter which Tags to delete
      */
-    where?: tagsWhereInput
+    where?: TagWhereInput
   }
 
 
   /**
-   * tags without action
+   * Tag.artigos
    */
-  export type tagsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Tag$artigosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tags
+     * Select specific fields to fetch from the Artigo
      */
-    select?: tagsSelect<ExtArgs> | null
+    select?: ArtigoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ArtigoInclude<ExtArgs> | null
+    where?: ArtigoWhereInput
+    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    cursor?: ArtigoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
+  }
+
+
+  /**
+   * Tag without action
+   */
+  export type TagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TagInclude<ExtArgs> | null
   }
 
 
@@ -3643,7 +3806,7 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const FormularioScalarFieldEnum: {
+  export const ContatoScalarFieldEnum: {
     id: 'id',
     name: 'name',
     email: 'email',
@@ -3651,28 +3814,29 @@ export namespace Prisma {
     created_at: 'created_at'
   };
 
-  export type FormularioScalarFieldEnum = (typeof FormularioScalarFieldEnum)[keyof typeof FormularioScalarFieldEnum]
+  export type ContatoScalarFieldEnum = (typeof ContatoScalarFieldEnum)[keyof typeof ContatoScalarFieldEnum]
 
 
-  export const ArtigosScalarFieldEnum: {
+  export const ArtigoScalarFieldEnum: {
     id: 'id',
     slug: 'slug',
     title: 'title',
     img: 'img',
     content: 'content',
-    created_at: 'created_at'
+    created_at: 'created_at',
+    tagId: 'tagId'
   };
 
-  export type ArtigosScalarFieldEnum = (typeof ArtigosScalarFieldEnum)[keyof typeof ArtigosScalarFieldEnum]
+  export type ArtigoScalarFieldEnum = (typeof ArtigoScalarFieldEnum)[keyof typeof ArtigoScalarFieldEnum]
 
 
-  export const TagsScalarFieldEnum: {
+  export const TagScalarFieldEnum: {
     id: 'id',
     title: 'title',
     slug: 'slug'
   };
 
-  export type TagsScalarFieldEnum = (typeof TagsScalarFieldEnum)[keyof typeof TagsScalarFieldEnum]
+  export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3683,34 +3847,35 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const formularioOrderByRelevanceFieldEnum: {
+  export const ContatoOrderByRelevanceFieldEnum: {
     id: 'id',
     name: 'name',
     email: 'email',
     phone: 'phone'
   };
 
-  export type formularioOrderByRelevanceFieldEnum = (typeof formularioOrderByRelevanceFieldEnum)[keyof typeof formularioOrderByRelevanceFieldEnum]
+  export type ContatoOrderByRelevanceFieldEnum = (typeof ContatoOrderByRelevanceFieldEnum)[keyof typeof ContatoOrderByRelevanceFieldEnum]
 
 
-  export const artigosOrderByRelevanceFieldEnum: {
+  export const ArtigoOrderByRelevanceFieldEnum: {
     id: 'id',
     slug: 'slug',
     title: 'title',
     img: 'img',
-    content: 'content'
+    content: 'content',
+    tagId: 'tagId'
   };
 
-  export type artigosOrderByRelevanceFieldEnum = (typeof artigosOrderByRelevanceFieldEnum)[keyof typeof artigosOrderByRelevanceFieldEnum]
+  export type ArtigoOrderByRelevanceFieldEnum = (typeof ArtigoOrderByRelevanceFieldEnum)[keyof typeof ArtigoOrderByRelevanceFieldEnum]
 
 
-  export const tagsOrderByRelevanceFieldEnum: {
+  export const TagOrderByRelevanceFieldEnum: {
     id: 'id',
     title: 'title',
     slug: 'slug'
   };
 
-  export type tagsOrderByRelevanceFieldEnum = (typeof tagsOrderByRelevanceFieldEnum)[keyof typeof tagsOrderByRelevanceFieldEnum]
+  export type TagOrderByRelevanceFieldEnum = (typeof TagOrderByRelevanceFieldEnum)[keyof typeof TagOrderByRelevanceFieldEnum]
 
 
   /**
@@ -3742,161 +3907,172 @@ export namespace Prisma {
    */
 
 
-  export type formularioWhereInput = {
-    AND?: formularioWhereInput | formularioWhereInput[]
-    OR?: formularioWhereInput[]
-    NOT?: formularioWhereInput | formularioWhereInput[]
-    id?: StringFilter<"formulario"> | string
-    name?: StringFilter<"formulario"> | string
-    email?: StringFilter<"formulario"> | string
-    phone?: StringFilter<"formulario"> | string
-    created_at?: DateTimeFilter<"formulario"> | Date | string
+  export type ContatoWhereInput = {
+    AND?: ContatoWhereInput | ContatoWhereInput[]
+    OR?: ContatoWhereInput[]
+    NOT?: ContatoWhereInput | ContatoWhereInput[]
+    id?: StringFilter<"Contato"> | string
+    name?: StringFilter<"Contato"> | string
+    email?: StringFilter<"Contato"> | string
+    phone?: StringFilter<"Contato"> | string
+    created_at?: DateTimeFilter<"Contato"> | Date | string
   }
 
-  export type formularioOrderByWithRelationAndSearchRelevanceInput = {
+  export type ContatoOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
     created_at?: SortOrder
-    _relevance?: formularioOrderByRelevanceInput
+    _relevance?: ContatoOrderByRelevanceInput
   }
 
-  export type formularioWhereUniqueInput = Prisma.AtLeast<{
+  export type ContatoWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: formularioWhereInput | formularioWhereInput[]
-    OR?: formularioWhereInput[]
-    NOT?: formularioWhereInput | formularioWhereInput[]
-    name?: StringFilter<"formulario"> | string
-    email?: StringFilter<"formulario"> | string
-    phone?: StringFilter<"formulario"> | string
-    created_at?: DateTimeFilter<"formulario"> | Date | string
+    AND?: ContatoWhereInput | ContatoWhereInput[]
+    OR?: ContatoWhereInput[]
+    NOT?: ContatoWhereInput | ContatoWhereInput[]
+    name?: StringFilter<"Contato"> | string
+    email?: StringFilter<"Contato"> | string
+    phone?: StringFilter<"Contato"> | string
+    created_at?: DateTimeFilter<"Contato"> | Date | string
   }, "id">
 
-  export type formularioOrderByWithAggregationInput = {
+  export type ContatoOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
     created_at?: SortOrder
-    _count?: formularioCountOrderByAggregateInput
-    _max?: formularioMaxOrderByAggregateInput
-    _min?: formularioMinOrderByAggregateInput
+    _count?: ContatoCountOrderByAggregateInput
+    _max?: ContatoMaxOrderByAggregateInput
+    _min?: ContatoMinOrderByAggregateInput
   }
 
-  export type formularioScalarWhereWithAggregatesInput = {
-    AND?: formularioScalarWhereWithAggregatesInput | formularioScalarWhereWithAggregatesInput[]
-    OR?: formularioScalarWhereWithAggregatesInput[]
-    NOT?: formularioScalarWhereWithAggregatesInput | formularioScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"formulario"> | string
-    name?: StringWithAggregatesFilter<"formulario"> | string
-    email?: StringWithAggregatesFilter<"formulario"> | string
-    phone?: StringWithAggregatesFilter<"formulario"> | string
-    created_at?: DateTimeWithAggregatesFilter<"formulario"> | Date | string
+  export type ContatoScalarWhereWithAggregatesInput = {
+    AND?: ContatoScalarWhereWithAggregatesInput | ContatoScalarWhereWithAggregatesInput[]
+    OR?: ContatoScalarWhereWithAggregatesInput[]
+    NOT?: ContatoScalarWhereWithAggregatesInput | ContatoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Contato"> | string
+    name?: StringWithAggregatesFilter<"Contato"> | string
+    email?: StringWithAggregatesFilter<"Contato"> | string
+    phone?: StringWithAggregatesFilter<"Contato"> | string
+    created_at?: DateTimeWithAggregatesFilter<"Contato"> | Date | string
   }
 
-  export type artigosWhereInput = {
-    AND?: artigosWhereInput | artigosWhereInput[]
-    OR?: artigosWhereInput[]
-    NOT?: artigosWhereInput | artigosWhereInput[]
-    id?: StringFilter<"artigos"> | string
-    slug?: StringFilter<"artigos"> | string
-    title?: StringFilter<"artigos"> | string
-    img?: StringFilter<"artigos"> | string
-    content?: StringFilter<"artigos"> | string
-    created_at?: DateTimeFilter<"artigos"> | Date | string
+  export type ArtigoWhereInput = {
+    AND?: ArtigoWhereInput | ArtigoWhereInput[]
+    OR?: ArtigoWhereInput[]
+    NOT?: ArtigoWhereInput | ArtigoWhereInput[]
+    id?: StringFilter<"Artigo"> | string
+    slug?: StringFilter<"Artigo"> | string
+    title?: StringFilter<"Artigo"> | string
+    img?: StringFilter<"Artigo"> | string
+    content?: StringFilter<"Artigo"> | string
+    created_at?: DateTimeFilter<"Artigo"> | Date | string
+    tagId?: StringFilter<"Artigo"> | string
+    tag?: XOR<TagRelationFilter, TagWhereInput>
   }
 
-  export type artigosOrderByWithRelationAndSearchRelevanceInput = {
+  export type ArtigoOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
     img?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
-    _relevance?: artigosOrderByRelevanceInput
+    tagId?: SortOrder
+    tag?: TagOrderByWithRelationAndSearchRelevanceInput
+    _relevance?: ArtigoOrderByRelevanceInput
   }
 
-  export type artigosWhereUniqueInput = Prisma.AtLeast<{
+  export type ArtigoWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     slug?: string
-    AND?: artigosWhereInput | artigosWhereInput[]
-    OR?: artigosWhereInput[]
-    NOT?: artigosWhereInput | artigosWhereInput[]
-    title?: StringFilter<"artigos"> | string
-    img?: StringFilter<"artigos"> | string
-    content?: StringFilter<"artigos"> | string
-    created_at?: DateTimeFilter<"artigos"> | Date | string
+    AND?: ArtigoWhereInput | ArtigoWhereInput[]
+    OR?: ArtigoWhereInput[]
+    NOT?: ArtigoWhereInput | ArtigoWhereInput[]
+    title?: StringFilter<"Artigo"> | string
+    img?: StringFilter<"Artigo"> | string
+    content?: StringFilter<"Artigo"> | string
+    created_at?: DateTimeFilter<"Artigo"> | Date | string
+    tagId?: StringFilter<"Artigo"> | string
+    tag?: XOR<TagRelationFilter, TagWhereInput>
   }, "id" | "slug">
 
-  export type artigosOrderByWithAggregationInput = {
+  export type ArtigoOrderByWithAggregationInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
     img?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
-    _count?: artigosCountOrderByAggregateInput
-    _max?: artigosMaxOrderByAggregateInput
-    _min?: artigosMinOrderByAggregateInput
+    tagId?: SortOrder
+    _count?: ArtigoCountOrderByAggregateInput
+    _max?: ArtigoMaxOrderByAggregateInput
+    _min?: ArtigoMinOrderByAggregateInput
   }
 
-  export type artigosScalarWhereWithAggregatesInput = {
-    AND?: artigosScalarWhereWithAggregatesInput | artigosScalarWhereWithAggregatesInput[]
-    OR?: artigosScalarWhereWithAggregatesInput[]
-    NOT?: artigosScalarWhereWithAggregatesInput | artigosScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"artigos"> | string
-    slug?: StringWithAggregatesFilter<"artigos"> | string
-    title?: StringWithAggregatesFilter<"artigos"> | string
-    img?: StringWithAggregatesFilter<"artigos"> | string
-    content?: StringWithAggregatesFilter<"artigos"> | string
-    created_at?: DateTimeWithAggregatesFilter<"artigos"> | Date | string
+  export type ArtigoScalarWhereWithAggregatesInput = {
+    AND?: ArtigoScalarWhereWithAggregatesInput | ArtigoScalarWhereWithAggregatesInput[]
+    OR?: ArtigoScalarWhereWithAggregatesInput[]
+    NOT?: ArtigoScalarWhereWithAggregatesInput | ArtigoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Artigo"> | string
+    slug?: StringWithAggregatesFilter<"Artigo"> | string
+    title?: StringWithAggregatesFilter<"Artigo"> | string
+    img?: StringWithAggregatesFilter<"Artigo"> | string
+    content?: StringWithAggregatesFilter<"Artigo"> | string
+    created_at?: DateTimeWithAggregatesFilter<"Artigo"> | Date | string
+    tagId?: StringWithAggregatesFilter<"Artigo"> | string
   }
 
-  export type tagsWhereInput = {
-    AND?: tagsWhereInput | tagsWhereInput[]
-    OR?: tagsWhereInput[]
-    NOT?: tagsWhereInput | tagsWhereInput[]
-    id?: StringFilter<"tags"> | string
-    title?: StringFilter<"tags"> | string
-    slug?: StringFilter<"tags"> | string
+  export type TagWhereInput = {
+    AND?: TagWhereInput | TagWhereInput[]
+    OR?: TagWhereInput[]
+    NOT?: TagWhereInput | TagWhereInput[]
+    id?: StringFilter<"Tag"> | string
+    title?: StringFilter<"Tag"> | string
+    slug?: StringFilter<"Tag"> | string
+    artigos?: ArtigoListRelationFilter
   }
 
-  export type tagsOrderByWithRelationAndSearchRelevanceInput = {
+  export type TagOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
-    _relevance?: tagsOrderByRelevanceInput
+    artigos?: ArtigoOrderByRelationAggregateInput
+    _relevance?: TagOrderByRelevanceInput
   }
 
-  export type tagsWhereUniqueInput = Prisma.AtLeast<{
+  export type TagWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: tagsWhereInput | tagsWhereInput[]
-    OR?: tagsWhereInput[]
-    NOT?: tagsWhereInput | tagsWhereInput[]
-    title?: StringFilter<"tags"> | string
-    slug?: StringFilter<"tags"> | string
+    AND?: TagWhereInput | TagWhereInput[]
+    OR?: TagWhereInput[]
+    NOT?: TagWhereInput | TagWhereInput[]
+    title?: StringFilter<"Tag"> | string
+    slug?: StringFilter<"Tag"> | string
+    artigos?: ArtigoListRelationFilter
   }, "id">
 
-  export type tagsOrderByWithAggregationInput = {
+  export type TagOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
-    _count?: tagsCountOrderByAggregateInput
-    _max?: tagsMaxOrderByAggregateInput
-    _min?: tagsMinOrderByAggregateInput
+    _count?: TagCountOrderByAggregateInput
+    _max?: TagMaxOrderByAggregateInput
+    _min?: TagMinOrderByAggregateInput
   }
 
-  export type tagsScalarWhereWithAggregatesInput = {
-    AND?: tagsScalarWhereWithAggregatesInput | tagsScalarWhereWithAggregatesInput[]
-    OR?: tagsScalarWhereWithAggregatesInput[]
-    NOT?: tagsScalarWhereWithAggregatesInput | tagsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"tags"> | string
-    title?: StringWithAggregatesFilter<"tags"> | string
-    slug?: StringWithAggregatesFilter<"tags"> | string
+  export type TagScalarWhereWithAggregatesInput = {
+    AND?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
+    OR?: TagScalarWhereWithAggregatesInput[]
+    NOT?: TagScalarWhereWithAggregatesInput | TagScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Tag"> | string
+    title?: StringWithAggregatesFilter<"Tag"> | string
+    slug?: StringWithAggregatesFilter<"Tag"> | string
   }
 
-  export type formularioCreateInput = {
+  export type ContatoCreateInput = {
     id?: string
     name: string
     email: string
@@ -3904,7 +4080,7 @@ export namespace Prisma {
     created_at?: Date | string
   }
 
-  export type formularioUncheckedCreateInput = {
+  export type ContatoUncheckedCreateInput = {
     id?: string
     name: string
     email: string
@@ -3912,7 +4088,7 @@ export namespace Prisma {
     created_at?: Date | string
   }
 
-  export type formularioUpdateInput = {
+  export type ContatoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -3920,7 +4096,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type formularioUncheckedUpdateInput = {
+  export type ContatoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -3928,7 +4104,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type formularioCreateManyInput = {
+  export type ContatoCreateManyInput = {
     id?: string
     name: string
     email: string
@@ -3936,7 +4112,7 @@ export namespace Prisma {
     created_at?: Date | string
   }
 
-  export type formularioUpdateManyMutationInput = {
+  export type ContatoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -3944,7 +4120,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type formularioUncheckedUpdateManyInput = {
+  export type ContatoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -3952,52 +4128,57 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type artigosCreateInput = {
+  export type ArtigoCreateInput = {
     id?: string
     slug: string
     title: string
     img: string
     content: string
     created_at?: Date | string
+    tag: TagCreateNestedOneWithoutArtigosInput
   }
 
-  export type artigosUncheckedCreateInput = {
+  export type ArtigoUncheckedCreateInput = {
     id?: string
     slug: string
     title: string
     img: string
     content: string
     created_at?: Date | string
+    tagId: string
   }
 
-  export type artigosUpdateInput = {
+  export type ArtigoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    tag?: TagUpdateOneRequiredWithoutArtigosNestedInput
   }
 
-  export type artigosUncheckedUpdateInput = {
+  export type ArtigoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    tagId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type artigosCreateManyInput = {
+  export type ArtigoCreateManyInput = {
     id?: string
     slug: string
     title: string
     img: string
     content: string
     created_at?: Date | string
+    tagId: string
   }
 
-  export type artigosUpdateManyMutationInput = {
+  export type ArtigoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -4006,52 +4187,57 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type artigosUncheckedUpdateManyInput = {
+  export type ArtigoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     img?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    tagId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type tagsCreateInput = {
+  export type TagCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    artigos?: ArtigoCreateNestedManyWithoutTagInput
+  }
+
+  export type TagUncheckedCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    artigos?: ArtigoUncheckedCreateNestedManyWithoutTagInput
+  }
+
+  export type TagUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    artigos?: ArtigoUpdateManyWithoutTagNestedInput
+  }
+
+  export type TagUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    artigos?: ArtigoUncheckedUpdateManyWithoutTagNestedInput
+  }
+
+  export type TagCreateManyInput = {
     id?: string
     title: string
     slug: string
   }
 
-  export type tagsUncheckedCreateInput = {
-    id?: string
-    title: string
-    slug: string
-  }
-
-  export type tagsUpdateInput = {
+  export type TagUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
   }
 
-  export type tagsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type tagsCreateManyInput = {
-    id?: string
-    title: string
-    slug: string
-  }
-
-  export type tagsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type tagsUncheckedUpdateManyInput = {
+  export type TagUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -4083,13 +4269,13 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type formularioOrderByRelevanceInput = {
-    fields: formularioOrderByRelevanceFieldEnum | formularioOrderByRelevanceFieldEnum[]
+  export type ContatoOrderByRelevanceInput = {
+    fields: ContatoOrderByRelevanceFieldEnum | ContatoOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type formularioCountOrderByAggregateInput = {
+  export type ContatoCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -4097,7 +4283,7 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type formularioMaxOrderByAggregateInput = {
+  export type ContatoMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -4105,7 +4291,7 @@ export namespace Prisma {
     created_at?: SortOrder
   }
 
-  export type formularioMinOrderByAggregateInput = {
+  export type ContatoMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -4145,58 +4331,76 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type artigosOrderByRelevanceInput = {
-    fields: artigosOrderByRelevanceFieldEnum | artigosOrderByRelevanceFieldEnum[]
+  export type TagRelationFilter = {
+    is?: TagWhereInput
+    isNot?: TagWhereInput
+  }
+
+  export type ArtigoOrderByRelevanceInput = {
+    fields: ArtigoOrderByRelevanceFieldEnum | ArtigoOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type artigosCountOrderByAggregateInput = {
+  export type ArtigoCountOrderByAggregateInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
     img?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
+    tagId?: SortOrder
   }
 
-  export type artigosMaxOrderByAggregateInput = {
+  export type ArtigoMaxOrderByAggregateInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
     img?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
+    tagId?: SortOrder
   }
 
-  export type artigosMinOrderByAggregateInput = {
+  export type ArtigoMinOrderByAggregateInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
     img?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
+    tagId?: SortOrder
   }
 
-  export type tagsOrderByRelevanceInput = {
-    fields: tagsOrderByRelevanceFieldEnum | tagsOrderByRelevanceFieldEnum[]
+  export type ArtigoListRelationFilter = {
+    every?: ArtigoWhereInput
+    some?: ArtigoWhereInput
+    none?: ArtigoWhereInput
+  }
+
+  export type ArtigoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TagOrderByRelevanceInput = {
+    fields: TagOrderByRelevanceFieldEnum | TagOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type tagsCountOrderByAggregateInput = {
+  export type TagCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
   }
 
-  export type tagsMaxOrderByAggregateInput = {
+  export type TagMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
   }
 
-  export type tagsMinOrderByAggregateInput = {
+  export type TagMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
@@ -4208,6 +4412,62 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type TagCreateNestedOneWithoutArtigosInput = {
+    create?: XOR<TagCreateWithoutArtigosInput, TagUncheckedCreateWithoutArtigosInput>
+    connectOrCreate?: TagCreateOrConnectWithoutArtigosInput
+    connect?: TagWhereUniqueInput
+  }
+
+  export type TagUpdateOneRequiredWithoutArtigosNestedInput = {
+    create?: XOR<TagCreateWithoutArtigosInput, TagUncheckedCreateWithoutArtigosInput>
+    connectOrCreate?: TagCreateOrConnectWithoutArtigosInput
+    upsert?: TagUpsertWithoutArtigosInput
+    connect?: TagWhereUniqueInput
+    update?: XOR<XOR<TagUpdateToOneWithWhereWithoutArtigosInput, TagUpdateWithoutArtigosInput>, TagUncheckedUpdateWithoutArtigosInput>
+  }
+
+  export type ArtigoCreateNestedManyWithoutTagInput = {
+    create?: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput> | ArtigoCreateWithoutTagInput[] | ArtigoUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: ArtigoCreateOrConnectWithoutTagInput | ArtigoCreateOrConnectWithoutTagInput[]
+    createMany?: ArtigoCreateManyTagInputEnvelope
+    connect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+  }
+
+  export type ArtigoUncheckedCreateNestedManyWithoutTagInput = {
+    create?: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput> | ArtigoCreateWithoutTagInput[] | ArtigoUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: ArtigoCreateOrConnectWithoutTagInput | ArtigoCreateOrConnectWithoutTagInput[]
+    createMany?: ArtigoCreateManyTagInputEnvelope
+    connect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+  }
+
+  export type ArtigoUpdateManyWithoutTagNestedInput = {
+    create?: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput> | ArtigoCreateWithoutTagInput[] | ArtigoUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: ArtigoCreateOrConnectWithoutTagInput | ArtigoCreateOrConnectWithoutTagInput[]
+    upsert?: ArtigoUpsertWithWhereUniqueWithoutTagInput | ArtigoUpsertWithWhereUniqueWithoutTagInput[]
+    createMany?: ArtigoCreateManyTagInputEnvelope
+    set?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    disconnect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    delete?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    connect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    update?: ArtigoUpdateWithWhereUniqueWithoutTagInput | ArtigoUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: ArtigoUpdateManyWithWhereWithoutTagInput | ArtigoUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: ArtigoScalarWhereInput | ArtigoScalarWhereInput[]
+  }
+
+  export type ArtigoUncheckedUpdateManyWithoutTagNestedInput = {
+    create?: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput> | ArtigoCreateWithoutTagInput[] | ArtigoUncheckedCreateWithoutTagInput[]
+    connectOrCreate?: ArtigoCreateOrConnectWithoutTagInput | ArtigoCreateOrConnectWithoutTagInput[]
+    upsert?: ArtigoUpsertWithWhereUniqueWithoutTagInput | ArtigoUpsertWithWhereUniqueWithoutTagInput[]
+    createMany?: ArtigoCreateManyTagInputEnvelope
+    set?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    disconnect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    delete?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    connect?: ArtigoWhereUniqueInput | ArtigoWhereUniqueInput[]
+    update?: ArtigoUpdateWithWhereUniqueWithoutTagInput | ArtigoUpdateWithWhereUniqueWithoutTagInput[]
+    updateMany?: ArtigoUpdateManyWithWhereWithoutTagInput | ArtigoUpdateManyWithWhereWithoutTagInput[]
+    deleteMany?: ArtigoScalarWhereInput | ArtigoScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4279,23 +4539,160 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type TagCreateWithoutArtigosInput = {
+    id?: string
+    title: string
+    slug: string
+  }
+
+  export type TagUncheckedCreateWithoutArtigosInput = {
+    id?: string
+    title: string
+    slug: string
+  }
+
+  export type TagCreateOrConnectWithoutArtigosInput = {
+    where: TagWhereUniqueInput
+    create: XOR<TagCreateWithoutArtigosInput, TagUncheckedCreateWithoutArtigosInput>
+  }
+
+  export type TagUpsertWithoutArtigosInput = {
+    update: XOR<TagUpdateWithoutArtigosInput, TagUncheckedUpdateWithoutArtigosInput>
+    create: XOR<TagCreateWithoutArtigosInput, TagUncheckedCreateWithoutArtigosInput>
+    where?: TagWhereInput
+  }
+
+  export type TagUpdateToOneWithWhereWithoutArtigosInput = {
+    where?: TagWhereInput
+    data: XOR<TagUpdateWithoutArtigosInput, TagUncheckedUpdateWithoutArtigosInput>
+  }
+
+  export type TagUpdateWithoutArtigosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TagUncheckedUpdateWithoutArtigosInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ArtigoCreateWithoutTagInput = {
+    id?: string
+    slug: string
+    title: string
+    img: string
+    content: string
+    created_at?: Date | string
+  }
+
+  export type ArtigoUncheckedCreateWithoutTagInput = {
+    id?: string
+    slug: string
+    title: string
+    img: string
+    content: string
+    created_at?: Date | string
+  }
+
+  export type ArtigoCreateOrConnectWithoutTagInput = {
+    where: ArtigoWhereUniqueInput
+    create: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput>
+  }
+
+  export type ArtigoCreateManyTagInputEnvelope = {
+    data: ArtigoCreateManyTagInput | ArtigoCreateManyTagInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ArtigoUpsertWithWhereUniqueWithoutTagInput = {
+    where: ArtigoWhereUniqueInput
+    update: XOR<ArtigoUpdateWithoutTagInput, ArtigoUncheckedUpdateWithoutTagInput>
+    create: XOR<ArtigoCreateWithoutTagInput, ArtigoUncheckedCreateWithoutTagInput>
+  }
+
+  export type ArtigoUpdateWithWhereUniqueWithoutTagInput = {
+    where: ArtigoWhereUniqueInput
+    data: XOR<ArtigoUpdateWithoutTagInput, ArtigoUncheckedUpdateWithoutTagInput>
+  }
+
+  export type ArtigoUpdateManyWithWhereWithoutTagInput = {
+    where: ArtigoScalarWhereInput
+    data: XOR<ArtigoUpdateManyMutationInput, ArtigoUncheckedUpdateManyWithoutTagInput>
+  }
+
+  export type ArtigoScalarWhereInput = {
+    AND?: ArtigoScalarWhereInput | ArtigoScalarWhereInput[]
+    OR?: ArtigoScalarWhereInput[]
+    NOT?: ArtigoScalarWhereInput | ArtigoScalarWhereInput[]
+    id?: StringFilter<"Artigo"> | string
+    slug?: StringFilter<"Artigo"> | string
+    title?: StringFilter<"Artigo"> | string
+    img?: StringFilter<"Artigo"> | string
+    content?: StringFilter<"Artigo"> | string
+    created_at?: DateTimeFilter<"Artigo"> | Date | string
+    tagId?: StringFilter<"Artigo"> | string
+  }
+
+  export type ArtigoCreateManyTagInput = {
+    id?: string
+    slug: string
+    title: string
+    img: string
+    content: string
+    created_at?: Date | string
+  }
+
+  export type ArtigoUpdateWithoutTagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArtigoUncheckedUpdateWithoutTagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ArtigoUncheckedUpdateManyWithoutTagInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    img?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
    * Aliases for legacy arg types
    */
     /**
-     * @deprecated Use formularioDefaultArgs instead
+     * @deprecated Use TagCountOutputTypeDefaultArgs instead
      */
-    export type formularioArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = formularioDefaultArgs<ExtArgs>
+    export type TagCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use artigosDefaultArgs instead
+     * @deprecated Use ContatoDefaultArgs instead
      */
-    export type artigosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = artigosDefaultArgs<ExtArgs>
+    export type ContatoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ContatoDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use tagsDefaultArgs instead
+     * @deprecated Use ArtigoDefaultArgs instead
      */
-    export type tagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = tagsDefaultArgs<ExtArgs>
+    export type ArtigoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ArtigoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use TagDefaultArgs instead
+     */
+    export type TagArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TagDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

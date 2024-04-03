@@ -12,7 +12,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model formulario {
+model Contato {
     id         String   @id @default(uuid())
     name       String
     email      String
@@ -20,17 +20,20 @@ model formulario {
     created_at DateTime @default(now())
 }
 
-model artigos {
+model Artigo {
     id         String   @id @default(uuid())
     slug       String   @unique
     title      String
     img        String
-    content    String
+    content    String   @db.Text
     created_at DateTime @default(now())
+    tag        Tag      @relation(fields: [tagId], references: [id])
+    tagId      String
 }
 
-model tags {
-    id    String @id @default(uuid())
-    title String
-    slug  String
+model Tag {
+    id      String   @id @default(uuid())
+    title   String
+    slug    String
+    artigos Artigo[]
 }

@@ -119,7 +119,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.FormularioScalarFieldEnum = {
+exports.Prisma.ContatoScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
@@ -127,16 +127,17 @@ exports.Prisma.FormularioScalarFieldEnum = {
   created_at: 'created_at'
 };
 
-exports.Prisma.ArtigosScalarFieldEnum = {
+exports.Prisma.ArtigoScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
   title: 'title',
   img: 'img',
   content: 'content',
-  created_at: 'created_at'
+  created_at: 'created_at',
+  tagId: 'tagId'
 };
 
-exports.Prisma.TagsScalarFieldEnum = {
+exports.Prisma.TagScalarFieldEnum = {
   id: 'id',
   title: 'title',
   slug: 'slug'
@@ -147,22 +148,23 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.formularioOrderByRelevanceFieldEnum = {
+exports.Prisma.ContatoOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
   phone: 'phone'
 };
 
-exports.Prisma.artigosOrderByRelevanceFieldEnum = {
+exports.Prisma.ArtigoOrderByRelevanceFieldEnum = {
   id: 'id',
   slug: 'slug',
   title: 'title',
   img: 'img',
-  content: 'content'
+  content: 'content',
+  tagId: 'tagId'
 };
 
-exports.Prisma.tagsOrderByRelevanceFieldEnum = {
+exports.Prisma.TagOrderByRelevanceFieldEnum = {
   id: 'id',
   title: 'title',
   slug: 'slug'
@@ -170,9 +172,9 @@ exports.Prisma.tagsOrderByRelevanceFieldEnum = {
 
 
 exports.Prisma.ModelName = {
-  formulario: 'formulario',
-  artigos: 'artigos',
-  tags: 'tags'
+  Contato: 'Contato',
+  Artigo: 'Artigo',
+  Tag: 'Tag'
 };
 
 /**

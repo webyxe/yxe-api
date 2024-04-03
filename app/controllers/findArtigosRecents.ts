@@ -3,7 +3,7 @@ import prismaClient from "./prismaClient";
 
 export class FindArtigosRecents {
     async handle(req: any, res: any) {
-        const artigos = await prismaClient.artigos.findMany({
+        const artigos = await prismaClient.artigo.findMany({
             take: 3,
             orderBy: [{ created_at: 'desc'}],
         });
