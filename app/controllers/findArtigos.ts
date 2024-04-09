@@ -5,7 +5,7 @@ export class FindArtigos {
     async handle(req: any, res: any) {
         const {search, page} = req.query;
         
-        const quantityPerPage = 2;
+        const quantityPerPage = 12;
         const pageCurrent = (page) ? parseInt(page) : 1;
         const initialPage = (pageCurrent * quantityPerPage) - quantityPerPage;
 
