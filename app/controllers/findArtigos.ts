@@ -3,8 +3,7 @@ import prismaClient from "./prismaClient";
 
 export class FindArtigos {
     async handle(req: any, res: any) {
-        const {search, page} = req.query;
-        
+        const {search, page, slug} = req.query;
         const quantityPerPage = 12;
         const pageCurrent = (page) ? parseInt(page) : 1;
         const initialPage = (pageCurrent * quantityPerPage) - quantityPerPage;
