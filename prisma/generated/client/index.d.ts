@@ -4046,13 +4046,13 @@ export namespace Prisma {
 
   export type TagWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    slug?: string
     AND?: TagWhereInput | TagWhereInput[]
     OR?: TagWhereInput[]
     NOT?: TagWhereInput | TagWhereInput[]
     title?: StringFilter<"Tag"> | string
-    slug?: StringFilter<"Tag"> | string
     artigos?: ArtigoListRelationFilter
-  }, "id">
+  }, "id" | "slug">
 
   export type TagOrderByWithAggregationInput = {
     id?: SortOrder

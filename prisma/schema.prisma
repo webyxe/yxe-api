@@ -34,6 +34,6 @@ model Artigo {
 model Tag {
     id      String   @id @default(uuid())
     title   String
-    slug    String
+    slug    String   @unique
     artigos Artigo[]
 }
