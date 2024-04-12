@@ -28,9 +28,6 @@ export class CreateContatoController {
                 responseContent.message = "Recebemos seu contato com sucesso";
                 responseContent.data = contatoPrisma;
                 return response.json(responseContent);
-
-
-
             }
             catch (erro: any) {
                 if (erro.code === 'P2002') { responseContent.message = "Você já está cadastrado em nosso sistema!"; }
