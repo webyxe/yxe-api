@@ -148,6 +148,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.ContatoOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',

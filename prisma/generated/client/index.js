@@ -117,6 +117,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.ContatoOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
@@ -185,8 +190,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "mysql",
-  "postinstall": true,
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -195,8 +199,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\r\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\r\n\r\ngenerator client {\r\n    provider        = \"prisma-client-js\"\r\n    output          = \"./generated/client\"\r\n    previewFeatures = [\"fullTextSearch\", \"fullTextIndex\"]\r\n}\r\n\r\ndatasource db {\r\n    provider = \"mysql\"\r\n    url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel Contato {\r\n    id         String   @id @default(uuid())\r\n    name       String\r\n    email      String\r\n    phone      String\r\n    created_at DateTime @default(now())\r\n}\r\n\r\nmodel Artigo {\r\n    id         String   @id @default(uuid())\r\n    slug       String   @unique\r\n    title      String\r\n    img        String\r\n    content    String   @db.Text\r\n    created_at DateTime @default(now())\r\n    tag        Tag      @relation(fields: [tagId], references: [id])\r\n    tagId      String\r\n}\r\n\r\nmodel Tag {\r\n    id      String   @id @default(uuid())\r\n    title   String\r\n    slug    String   @unique\r\n    artigos Artigo[]\r\n}\r\n",
-  "inlineSchemaHash": "759f33a4ba9f088d37efcf346aed3b44ec383660cdc27669330f12582ac8011b",
+  "inlineSchema": "// This is your Prisma schema file,\r\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\r\n\r\ngenerator client {\r\n    provider        = \"prisma-client-js\"\r\n    output          = \"./generated/client\"\r\n    previewFeatures = [\"fullTextSearch\", \"fullTextIndex\"]\r\n}\r\n\r\ndatasource db {\r\n    provider = \"postgresql\"\r\n    url      = env(\"DATABASE_URL\")\r\n}\r\n\r\nmodel Contato {\r\n    id         String   @id @default(uuid())\r\n    name       String\r\n    email      String\r\n    phone      String\r\n    created_at DateTime @default(now())\r\n}\r\n\r\nmodel Artigo {\r\n    id         String   @id @default(uuid())\r\n    slug       String   @unique\r\n    title      String\r\n    img        String\r\n    content    String   @db.Text\r\n    created_at DateTime @default(now())\r\n    tag        Tag      @relation(fields: [tagId], references: [id])\r\n    tagId      String\r\n}\r\n\r\nmodel Tag {\r\n    id      String   @id @default(uuid())\r\n    title   String\r\n    slug    String   @unique\r\n    artigos Artigo[]\r\n}\r\n",
+  "inlineSchemaHash": "94ef0f938928131d7579afcaa4a949c920853f3f9d8a60c61d6df1e0542ee0b7",
   "copyEngine": true
 }
 
