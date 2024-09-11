@@ -1,39 +1,36 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider        = "prisma-client-js"
-    output          = "./generated/client"
-    previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider        = "prisma-client-js"
+  output          = "./generated/client"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Contato {
-    id         String   @id @default(uuid())
-    name       String
-    email      String
-    phone      String
-    created_at DateTime @default(now())
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  phone      String
+  created_at DateTime @default(now())
 }
 
 model Artigo {
-    id         String   @id @default(uuid())
-    slug       String   @unique
-    title      String
-    img        String
-    content    String   @db.Text
-    created_at DateTime @default(now())
-    tag        Tag      @relation(fields: [tagId], references: [id])
-    tagId      String
+  id         String   @id @default(uuid())
+  slug       String   @unique
+  title      String
+  img        String
+  content    String   @db.Text
+  created_at DateTime @default(now())
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      String
 }
 
 model Tag {
-    id      String   @id @default(uuid())
-    title   String
-    slug    String   @unique
-    artigos Artigo[]
+  id      String   @id @default(uuid())
+  title   String
+  slug    String   @unique
+  artigos Artigo[]
 }

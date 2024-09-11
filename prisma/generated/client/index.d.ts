@@ -44,8 +44,8 @@ export type Tag = $Result.DefaultSelection<Prisma.$TagPayload>
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
-  T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -65,7 +65,7 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<T, Prisma.PrismaClientOptions>);
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
   $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
 
   /**
@@ -131,6 +131,7 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
+
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
    * @example
@@ -149,7 +150,7 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
       /**
    * `prisma.contato`: Exposes CRUD operations for the **Contato** model.
@@ -237,8 +238,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.12.1
-   * Query Engine version: 473ed3124229e22d881cb7addf559799debae1ab
+   * Prisma Client JS version: 5.19.1
+   * Query Engine version: 69d742ee20b815d88e17e54db4a2a7a3b30324e3
    */
   export type PrismaVersion = {
     client: string
@@ -250,51 +251,13 @@ export namespace Prisma {
    * Utility Types
    */
 
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches a JSON object.
-   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from. 
-   */
-  export type JsonObject = {[Key in string]?: JsonValue}
 
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches a JSON array.
-   */
-  export interface JsonArray extends Array<JsonValue> {}
-
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches any valid JSON value.
-   */
-  export type JsonValue = string | number | boolean | JsonObject | JsonArray | null
-
-  /**
-   * Matches a JSON object.
-   * Unlike `JsonObject`, this type allows undefined and read-only properties.
-   */
-  export type InputJsonObject = {readonly [Key in string]?: InputJsonValue | null}
-
-  /**
-   * Matches a JSON array.
-   * Unlike `JsonArray`, readonly arrays are assignable to this type.
-   */
-  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
-
-  /**
-   * Matches any valid value that can be used as an input for operations like
-   * create and update as the value of a JSON field. Unlike `JsonValue`, this
-   * type allows read-only arrays and read-only object properties and disallows
-   * `null` at the top level.
-   *
-   * `null` cannot be used as the value of a JSON field because its meaning
-   * would be ambiguous. Use `Prisma.JsonNull` to store the JSON null value or
-   * `Prisma.DbNull` to clear the JSON value and set the field to the database
-   * NULL value instead.
-   *
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
-   */
-  export type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | { toJSON(): unknown }
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -365,6 +328,11 @@ export namespace Prisma {
     include: any
   }
 
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
   /**
    * Get the type of the value, that the Promise holds.
    */
@@ -413,7 +381,9 @@ export namespace Prisma {
   } &
     (T extends SelectAndInclude
       ? 'Please either choose `select` or `include`.'
-      : {})
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
 
   /**
    * Subset + Intersection
@@ -662,79 +632,82 @@ export namespace Prisma {
     db?: Datasource
   }
 
-
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs']>
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs, clientOptions: PrismaClientOptions }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], this['params']['clientOptions']>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: 'contato' | 'artigo' | 'tag'
+      modelProps: "contato" | "artigo" | "tag"
       txIsolationLevel: Prisma.TransactionIsolationLevel
-    },
+    }
     model: {
       Contato: {
         payload: Prisma.$ContatoPayload<ExtArgs>
         fields: Prisma.ContatoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ContatoFindUniqueArgs<ExtArgs>,
+            args: Prisma.ContatoFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ContatoFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.ContatoFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           findFirst: {
-            args: Prisma.ContatoFindFirstArgs<ExtArgs>,
+            args: Prisma.ContatoFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ContatoFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.ContatoFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           findMany: {
-            args: Prisma.ContatoFindManyArgs<ExtArgs>,
+            args: Prisma.ContatoFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>[]
           }
           create: {
-            args: Prisma.ContatoCreateArgs<ExtArgs>,
+            args: Prisma.ContatoCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           createMany: {
-            args: Prisma.ContatoCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ContatoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContatoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContatoPayload>[]
           }
           delete: {
-            args: Prisma.ContatoDeleteArgs<ExtArgs>,
+            args: Prisma.ContatoDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           update: {
-            args: Prisma.ContatoUpdateArgs<ExtArgs>,
+            args: Prisma.ContatoUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           deleteMany: {
-            args: Prisma.ContatoDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ContatoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ContatoUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ContatoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.ContatoUpsertArgs<ExtArgs>,
+            args: Prisma.ContatoUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ContatoPayload>
           }
           aggregate: {
-            args: Prisma.ContatoAggregateArgs<ExtArgs>,
+            args: Prisma.ContatoAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateContato>
           }
           groupBy: {
-            args: Prisma.ContatoGroupByArgs<ExtArgs>,
+            args: Prisma.ContatoGroupByArgs<ExtArgs>
             result: $Utils.Optional<ContatoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ContatoCountArgs<ExtArgs>,
+            args: Prisma.ContatoCountArgs<ExtArgs>
             result: $Utils.Optional<ContatoCountAggregateOutputType> | number
           }
         }
@@ -744,63 +717,67 @@ export namespace Prisma {
         fields: Prisma.ArtigoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ArtigoFindUniqueArgs<ExtArgs>,
+            args: Prisma.ArtigoFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ArtigoFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.ArtigoFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           findFirst: {
-            args: Prisma.ArtigoFindFirstArgs<ExtArgs>,
+            args: Prisma.ArtigoFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ArtigoFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.ArtigoFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           findMany: {
-            args: Prisma.ArtigoFindManyArgs<ExtArgs>,
+            args: Prisma.ArtigoFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>[]
           }
           create: {
-            args: Prisma.ArtigoCreateArgs<ExtArgs>,
+            args: Prisma.ArtigoCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           createMany: {
-            args: Prisma.ArtigoCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ArtigoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ArtigoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>[]
           }
           delete: {
-            args: Prisma.ArtigoDeleteArgs<ExtArgs>,
+            args: Prisma.ArtigoDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           update: {
-            args: Prisma.ArtigoUpdateArgs<ExtArgs>,
+            args: Prisma.ArtigoUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           deleteMany: {
-            args: Prisma.ArtigoDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ArtigoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ArtigoUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ArtigoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.ArtigoUpsertArgs<ExtArgs>,
+            args: Prisma.ArtigoUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ArtigoPayload>
           }
           aggregate: {
-            args: Prisma.ArtigoAggregateArgs<ExtArgs>,
+            args: Prisma.ArtigoAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateArtigo>
           }
           groupBy: {
-            args: Prisma.ArtigoGroupByArgs<ExtArgs>,
+            args: Prisma.ArtigoGroupByArgs<ExtArgs>
             result: $Utils.Optional<ArtigoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ArtigoCountArgs<ExtArgs>,
+            args: Prisma.ArtigoCountArgs<ExtArgs>
             result: $Utils.Optional<ArtigoCountAggregateOutputType> | number
           }
         }
@@ -810,63 +787,67 @@ export namespace Prisma {
         fields: Prisma.TagFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.TagFindUniqueArgs<ExtArgs>,
+            args: Prisma.TagFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.TagFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findFirst: {
-            args: Prisma.TagFindFirstArgs<ExtArgs>,
+            args: Prisma.TagFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.TagFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           findMany: {
-            args: Prisma.TagFindManyArgs<ExtArgs>,
+            args: Prisma.TagFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>[]
           }
           create: {
-            args: Prisma.TagCreateArgs<ExtArgs>,
+            args: Prisma.TagCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           createMany: {
-            args: Prisma.TagCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.TagCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TagCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TagPayload>[]
           }
           delete: {
-            args: Prisma.TagDeleteArgs<ExtArgs>,
+            args: Prisma.TagDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           update: {
-            args: Prisma.TagUpdateArgs<ExtArgs>,
+            args: Prisma.TagUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           deleteMany: {
-            args: Prisma.TagDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.TagDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.TagUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.TagUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.TagUpsertArgs<ExtArgs>,
+            args: Prisma.TagUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$TagPayload>
           }
           aggregate: {
-            args: Prisma.TagAggregateArgs<ExtArgs>,
+            args: Prisma.TagAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateTag>
           }
           groupBy: {
-            args: Prisma.TagGroupByArgs<ExtArgs>,
+            args: Prisma.TagGroupByArgs<ExtArgs>
             result: $Utils.Optional<TagGroupByOutputType>[]
           }
           count: {
-            args: Prisma.TagCountArgs<ExtArgs>,
+            args: Prisma.TagCountArgs<ExtArgs>
             result: $Utils.Optional<TagCountAggregateOutputType> | number
           }
         }
@@ -876,15 +857,11 @@ export namespace Prisma {
     other: {
       payload: any
       operations: {
-        $executeRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
         $executeRaw: {
           args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
-        $queryRawUnsafe: {
+        $executeRawUnsafe: {
           args: [query: string, ...values: any[]],
           result: any
         }
@@ -892,10 +869,14 @@ export namespace Prisma {
           args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
       }
     }
   }
-  export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
@@ -940,6 +921,7 @@ export namespace Prisma {
     }
   }
 
+
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
   export type LogDefinition = {
@@ -976,6 +958,7 @@ export namespace Prisma {
     | 'findFirstOrThrow'
     | 'create'
     | 'createMany'
+    | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
     | 'upsert'
@@ -1038,7 +1021,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * TagCountOutputType without action
    */
@@ -1049,14 +1031,12 @@ export namespace Prisma {
     select?: TagCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * TagCountOutputType without action
    */
   export type TagCountOutputTypeCountArtigosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ArtigoWhereInput
   }
-
 
 
   /**
@@ -1134,7 +1114,7 @@ export namespace Prisma {
      * 
      * Determine the order of Contatoes to fetch.
      */
-    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationInput | ContatoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1229,6 +1209,14 @@ export namespace Prisma {
     created_at?: boolean
   }, ExtArgs["result"]["contato"]>
 
+  export type ContatoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["contato"]>
+
   export type ContatoSelectScalar = {
     id?: boolean
     name?: boolean
@@ -1251,7 +1239,6 @@ export namespace Prisma {
     composites: {}
   }
 
-
   type ContatoGetPayload<S extends boolean | null | undefined | ContatoDefaultArgs> = $Result.GetResult<Prisma.$ContatoPayload, S>
 
   type ContatoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
@@ -1271,14 +1258,12 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends ContatoFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoFindUniqueArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends ContatoFindUniqueArgs>(args: SelectSubset<T, ContatoFindUniqueArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one Contato that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Contato that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {ContatoFindUniqueOrThrowArgs} args - Arguments to find a Contato
      * @example
      * // Get one Contato
@@ -1287,10 +1272,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends ContatoFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends ContatoFindUniqueOrThrowArgs>(args: SelectSubset<T, ContatoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Contato that matches the filter.
@@ -1304,10 +1287,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends ContatoFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoFindFirstArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends ContatoFindFirstArgs>(args?: SelectSubset<T, ContatoFindFirstArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Contato that matches the filter or
@@ -1322,16 +1303,14 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends ContatoFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends ContatoFindFirstOrThrowArgs>(args?: SelectSubset<T, ContatoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Contatoes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ContatoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ContatoFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Contatoes
      * const contatoes = await prisma.contato.findMany()
@@ -1342,10 +1321,8 @@ export namespace Prisma {
      * // Only select the `id`
      * const contatoWithIdOnly = await prisma.contato.findMany({ select: { id: true } })
      * 
-    **/
-    findMany<T extends ContatoFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends ContatoFindManyArgs>(args?: SelectSubset<T, ContatoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Contato.
@@ -1358,26 +1335,46 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends ContatoCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoCreateArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends ContatoCreateArgs>(args: SelectSubset<T, ContatoCreateArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Contatoes.
-     *     @param {ContatoCreateManyArgs} args - Arguments to create many Contatoes.
-     *     @example
-     *     // Create many Contatoes
-     *     const contato = await prisma.contato.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {ContatoCreateManyArgs} args - Arguments to create many Contatoes.
+     * @example
+     * // Create many Contatoes
+     * const contato = await prisma.contato.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
-    **/
-    createMany<T extends ContatoCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends ContatoCreateManyArgs>(args?: SelectSubset<T, ContatoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Contatoes and returns the data saved in the database.
+     * @param {ContatoCreateManyAndReturnArgs} args - Arguments to create many Contatoes.
+     * @example
+     * // Create many Contatoes
+     * const contato = await prisma.contato.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Contatoes and only return the `id`
+     * const contatoWithIdOnly = await prisma.contato.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContatoCreateManyAndReturnArgs>(args?: SelectSubset<T, ContatoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Contato.
@@ -1390,10 +1387,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends ContatoDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoDeleteArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends ContatoDeleteArgs>(args: SelectSubset<T, ContatoDeleteArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Contato.
@@ -1409,10 +1404,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends ContatoUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoUpdateArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends ContatoUpdateArgs>(args: SelectSubset<T, ContatoUpdateArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Contatoes.
@@ -1425,10 +1418,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends ContatoDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ContatoDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends ContatoDeleteManyArgs>(args?: SelectSubset<T, ContatoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Contatoes.
@@ -1446,10 +1437,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends ContatoUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends ContatoUpdateManyArgs>(args: SelectSubset<T, ContatoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Contato.
@@ -1467,10 +1456,9 @@ export namespace Prisma {
      *     // ... the filter for the Contato we want to update
      *   }
      * })
-    **/
-    upsert<T extends ContatoUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ContatoUpsertArgs<ExtArgs>>
-    ): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends ContatoUpsertArgs>(args: SelectSubset<T, ContatoUpsertArgs<ExtArgs>>): Prisma__ContatoClient<$Result.GetResult<Prisma.$ContatoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Contatoes.
@@ -1610,30 +1598,29 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__ContatoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -1650,7 +1637,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Contato findUnique
    */
@@ -1665,7 +1651,6 @@ export namespace Prisma {
     where: ContatoWhereUniqueInput
   }
 
-
   /**
    * Contato findUniqueOrThrow
    */
@@ -1679,7 +1664,6 @@ export namespace Prisma {
      */
     where: ContatoWhereUniqueInput
   }
-
 
   /**
    * Contato findFirst
@@ -1698,7 +1682,7 @@ export namespace Prisma {
      * 
      * Determine the order of Contatoes to fetch.
      */
-    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationInput | ContatoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1724,7 +1708,6 @@ export namespace Prisma {
      */
     distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
-
 
   /**
    * Contato findFirstOrThrow
@@ -1743,7 +1726,7 @@ export namespace Prisma {
      * 
      * Determine the order of Contatoes to fetch.
      */
-    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationInput | ContatoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1770,7 +1753,6 @@ export namespace Prisma {
     distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
 
-
   /**
    * Contato findMany
    */
@@ -1788,7 +1770,7 @@ export namespace Prisma {
      * 
      * Determine the order of Contatoes to fetch.
      */
-    orderBy?: ContatoOrderByWithRelationAndSearchRelevanceInput | ContatoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ContatoOrderByWithRelationInput | ContatoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1810,7 +1792,6 @@ export namespace Prisma {
     distinct?: ContatoScalarFieldEnum | ContatoScalarFieldEnum[]
   }
 
-
   /**
    * Contato create
    */
@@ -1825,7 +1806,6 @@ export namespace Prisma {
     data: XOR<ContatoCreateInput, ContatoUncheckedCreateInput>
   }
 
-
   /**
    * Contato createMany
    */
@@ -1837,6 +1817,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Contato createManyAndReturn
+   */
+  export type ContatoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Contato
+     */
+    select?: ContatoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Contatoes.
+     */
+    data: ContatoCreateManyInput | ContatoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Contato update
@@ -1856,7 +1850,6 @@ export namespace Prisma {
     where: ContatoWhereUniqueInput
   }
 
-
   /**
    * Contato updateMany
    */
@@ -1870,7 +1863,6 @@ export namespace Prisma {
      */
     where?: ContatoWhereInput
   }
-
 
   /**
    * Contato upsert
@@ -1894,7 +1886,6 @@ export namespace Prisma {
     update: XOR<ContatoUpdateInput, ContatoUncheckedUpdateInput>
   }
 
-
   /**
    * Contato delete
    */
@@ -1909,7 +1900,6 @@ export namespace Prisma {
     where: ContatoWhereUniqueInput
   }
 
-
   /**
    * Contato deleteMany
    */
@@ -1920,7 +1910,6 @@ export namespace Prisma {
     where?: ContatoWhereInput
   }
 
-
   /**
    * Contato without action
    */
@@ -1930,7 +1919,6 @@ export namespace Prisma {
      */
     select?: ContatoSelect<ExtArgs> | null
   }
-
 
 
   /**
@@ -2016,7 +2004,7 @@ export namespace Prisma {
      * 
      * Determine the order of Artigos to fetch.
      */
-    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationInput | ArtigoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2116,6 +2104,17 @@ export namespace Prisma {
     tag?: boolean | TagDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["artigo"]>
 
+  export type ArtigoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    img?: boolean
+    content?: boolean
+    created_at?: boolean
+    tagId?: boolean
+    tag?: boolean | TagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["artigo"]>
+
   export type ArtigoSelectScalar = {
     id?: boolean
     slug?: boolean
@@ -2129,7 +2128,9 @@ export namespace Prisma {
   export type ArtigoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tag?: boolean | TagDefaultArgs<ExtArgs>
   }
-
+  export type ArtigoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tag?: boolean | TagDefaultArgs<ExtArgs>
+  }
 
   export type $ArtigoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Artigo"
@@ -2147,7 +2148,6 @@ export namespace Prisma {
     }, ExtArgs["result"]["artigo"]>
     composites: {}
   }
-
 
   type ArtigoGetPayload<S extends boolean | null | undefined | ArtigoDefaultArgs> = $Result.GetResult<Prisma.$ArtigoPayload, S>
 
@@ -2168,14 +2168,12 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends ArtigoFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoFindUniqueArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends ArtigoFindUniqueArgs>(args: SelectSubset<T, ArtigoFindUniqueArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one Artigo that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Artigo that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {ArtigoFindUniqueOrThrowArgs} args - Arguments to find a Artigo
      * @example
      * // Get one Artigo
@@ -2184,10 +2182,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends ArtigoFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends ArtigoFindUniqueOrThrowArgs>(args: SelectSubset<T, ArtigoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Artigo that matches the filter.
@@ -2201,10 +2197,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends ArtigoFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoFindFirstArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends ArtigoFindFirstArgs>(args?: SelectSubset<T, ArtigoFindFirstArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Artigo that matches the filter or
@@ -2219,16 +2213,14 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends ArtigoFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends ArtigoFindFirstOrThrowArgs>(args?: SelectSubset<T, ArtigoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Artigos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArtigoFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ArtigoFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Artigos
      * const artigos = await prisma.artigo.findMany()
@@ -2239,10 +2231,8 @@ export namespace Prisma {
      * // Only select the `id`
      * const artigoWithIdOnly = await prisma.artigo.findMany({ select: { id: true } })
      * 
-    **/
-    findMany<T extends ArtigoFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends ArtigoFindManyArgs>(args?: SelectSubset<T, ArtigoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Artigo.
@@ -2255,26 +2245,46 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends ArtigoCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoCreateArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends ArtigoCreateArgs>(args: SelectSubset<T, ArtigoCreateArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Artigos.
-     *     @param {ArtigoCreateManyArgs} args - Arguments to create many Artigos.
-     *     @example
-     *     // Create many Artigos
-     *     const artigo = await prisma.artigo.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {ArtigoCreateManyArgs} args - Arguments to create many Artigos.
+     * @example
+     * // Create many Artigos
+     * const artigo = await prisma.artigo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
-    **/
-    createMany<T extends ArtigoCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends ArtigoCreateManyArgs>(args?: SelectSubset<T, ArtigoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Artigos and returns the data saved in the database.
+     * @param {ArtigoCreateManyAndReturnArgs} args - Arguments to create many Artigos.
+     * @example
+     * // Create many Artigos
+     * const artigo = await prisma.artigo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Artigos and only return the `id`
+     * const artigoWithIdOnly = await prisma.artigo.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ArtigoCreateManyAndReturnArgs>(args?: SelectSubset<T, ArtigoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Artigo.
@@ -2287,10 +2297,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends ArtigoDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoDeleteArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends ArtigoDeleteArgs>(args: SelectSubset<T, ArtigoDeleteArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Artigo.
@@ -2306,10 +2314,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends ArtigoUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoUpdateArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends ArtigoUpdateArgs>(args: SelectSubset<T, ArtigoUpdateArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Artigos.
@@ -2322,10 +2328,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends ArtigoDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ArtigoDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends ArtigoDeleteManyArgs>(args?: SelectSubset<T, ArtigoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Artigos.
@@ -2343,10 +2347,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends ArtigoUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends ArtigoUpdateManyArgs>(args: SelectSubset<T, ArtigoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Artigo.
@@ -2364,10 +2366,9 @@ export namespace Prisma {
      *     // ... the filter for the Artigo we want to update
      *   }
      * })
-    **/
-    upsert<T extends ArtigoUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ArtigoUpsertArgs<ExtArgs>>
-    ): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends ArtigoUpsertArgs>(args: SelectSubset<T, ArtigoUpsertArgs<ExtArgs>>): Prisma__ArtigoClient<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Artigos.
@@ -2507,31 +2508,30 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__ArtigoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    tag<T extends TagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TagDefaultArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tag<T extends TagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TagDefaultArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -2550,7 +2550,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Artigo findUnique
    */
@@ -2560,7 +2559,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2568,7 +2567,6 @@ export namespace Prisma {
      */
     where: ArtigoWhereUniqueInput
   }
-
 
   /**
    * Artigo findUniqueOrThrow
@@ -2579,7 +2577,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2587,7 +2585,6 @@ export namespace Prisma {
      */
     where: ArtigoWhereUniqueInput
   }
-
 
   /**
    * Artigo findFirst
@@ -2598,7 +2595,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2610,7 +2607,7 @@ export namespace Prisma {
      * 
      * Determine the order of Artigos to fetch.
      */
-    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationInput | ArtigoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2636,7 +2633,6 @@ export namespace Prisma {
      */
     distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
-
 
   /**
    * Artigo findFirstOrThrow
@@ -2647,7 +2643,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2659,7 +2655,7 @@ export namespace Prisma {
      * 
      * Determine the order of Artigos to fetch.
      */
-    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationInput | ArtigoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2686,7 +2682,6 @@ export namespace Prisma {
     distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
 
-
   /**
    * Artigo findMany
    */
@@ -2696,7 +2691,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2708,7 +2703,7 @@ export namespace Prisma {
      * 
      * Determine the order of Artigos to fetch.
      */
-    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationInput | ArtigoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2730,7 +2725,6 @@ export namespace Prisma {
     distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
 
-
   /**
    * Artigo create
    */
@@ -2740,7 +2734,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2748,7 +2742,6 @@ export namespace Prisma {
      */
     data: XOR<ArtigoCreateInput, ArtigoUncheckedCreateInput>
   }
-
 
   /**
    * Artigo createMany
@@ -2761,6 +2754,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Artigo createManyAndReturn
+   */
+  export type ArtigoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Artigo
+     */
+    select?: ArtigoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Artigos.
+     */
+    data: ArtigoCreateManyInput | ArtigoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ArtigoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
 
   /**
    * Artigo update
@@ -2771,7 +2782,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2783,7 +2794,6 @@ export namespace Prisma {
      */
     where: ArtigoWhereUniqueInput
   }
-
 
   /**
    * Artigo updateMany
@@ -2799,7 +2809,6 @@ export namespace Prisma {
     where?: ArtigoWhereInput
   }
 
-
   /**
    * Artigo upsert
    */
@@ -2809,7 +2818,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2826,7 +2835,6 @@ export namespace Prisma {
     update: XOR<ArtigoUpdateInput, ArtigoUncheckedUpdateInput>
   }
 
-
   /**
    * Artigo delete
    */
@@ -2836,7 +2844,7 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     /**
@@ -2844,7 +2852,6 @@ export namespace Prisma {
      */
     where: ArtigoWhereUniqueInput
   }
-
 
   /**
    * Artigo deleteMany
@@ -2856,7 +2863,6 @@ export namespace Prisma {
     where?: ArtigoWhereInput
   }
 
-
   /**
    * Artigo without action
    */
@@ -2866,11 +2872,10 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -2932,7 +2937,7 @@ export namespace Prisma {
      * 
      * Determine the order of Tags to fetch.
      */
-    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3025,6 +3030,12 @@ export namespace Prisma {
     _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tag"]>
 
+  export type TagSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+  }, ExtArgs["result"]["tag"]>
+
   export type TagSelectScalar = {
     id?: boolean
     title?: boolean
@@ -3035,7 +3046,7 @@ export namespace Prisma {
     artigos?: boolean | Tag$artigosArgs<ExtArgs>
     _count?: boolean | TagCountOutputTypeDefaultArgs<ExtArgs>
   }
-
+  export type TagIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $TagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Tag"
@@ -3049,7 +3060,6 @@ export namespace Prisma {
     }, ExtArgs["result"]["tag"]>
     composites: {}
   }
-
 
   type TagGetPayload<S extends boolean | null | undefined | TagDefaultArgs> = $Result.GetResult<Prisma.$TagPayload, S>
 
@@ -3070,14 +3080,12 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends TagFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, TagFindUniqueArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends TagFindUniqueArgs>(args: SelectSubset<T, TagFindUniqueArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one Tag that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Tag that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {TagFindUniqueOrThrowArgs} args - Arguments to find a Tag
      * @example
      * // Get one Tag
@@ -3086,10 +3094,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends TagFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends TagFindUniqueOrThrowArgs>(args: SelectSubset<T, TagFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Tag that matches the filter.
@@ -3103,10 +3109,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends TagFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagFindFirstArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends TagFindFirstArgs>(args?: SelectSubset<T, TagFindFirstArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Tag that matches the filter or
@@ -3121,16 +3125,14 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends TagFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends TagFindFirstOrThrowArgs>(args?: SelectSubset<T, TagFindFirstOrThrowArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Tags that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TagFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {TagFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Tags
      * const tags = await prisma.tag.findMany()
@@ -3141,10 +3143,8 @@ export namespace Prisma {
      * // Only select the `id`
      * const tagWithIdOnly = await prisma.tag.findMany({ select: { id: true } })
      * 
-    **/
-    findMany<T extends TagFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends TagFindManyArgs>(args?: SelectSubset<T, TagFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Tag.
@@ -3157,26 +3157,46 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends TagCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, TagCreateArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends TagCreateArgs>(args: SelectSubset<T, TagCreateArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Tags.
-     *     @param {TagCreateManyArgs} args - Arguments to create many Tags.
-     *     @example
-     *     // Create many Tags
-     *     const tag = await prisma.tag.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {TagCreateManyArgs} args - Arguments to create many Tags.
+     * @example
+     * // Create many Tags
+     * const tag = await prisma.tag.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
-    **/
-    createMany<T extends TagCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends TagCreateManyArgs>(args?: SelectSubset<T, TagCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tags and returns the data saved in the database.
+     * @param {TagCreateManyAndReturnArgs} args - Arguments to create many Tags.
+     * @example
+     * // Create many Tags
+     * const tag = await prisma.tag.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tags and only return the `id`
+     * const tagWithIdOnly = await prisma.tag.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TagCreateManyAndReturnArgs>(args?: SelectSubset<T, TagCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Tag.
@@ -3189,10 +3209,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends TagDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, TagDeleteArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends TagDeleteArgs>(args: SelectSubset<T, TagDeleteArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Tag.
@@ -3208,10 +3226,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends TagUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, TagUpdateArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends TagUpdateArgs>(args: SelectSubset<T, TagUpdateArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Tags.
@@ -3224,10 +3240,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends TagDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, TagDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends TagDeleteManyArgs>(args?: SelectSubset<T, TagDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Tags.
@@ -3245,10 +3259,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends TagUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, TagUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends TagUpdateManyArgs>(args: SelectSubset<T, TagUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Tag.
@@ -3266,10 +3278,9 @@ export namespace Prisma {
      *     // ... the filter for the Tag we want to update
      *   }
      * })
-    **/
-    upsert<T extends TagUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, TagUpsertArgs<ExtArgs>>
-    ): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends TagUpsertArgs>(args: SelectSubset<T, TagUpsertArgs<ExtArgs>>): Prisma__TagClient<$Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Tags.
@@ -3409,31 +3420,30 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__TagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    artigos<T extends Tag$artigosArgs<ExtArgs> = {}>(args?: Subset<T, Tag$artigosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, 'findMany'> | Null>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    artigos<T extends Tag$artigosArgs<ExtArgs> = {}>(args?: Subset<T, Tag$artigosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArtigoPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -3448,7 +3458,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Tag findUnique
    */
@@ -3458,7 +3467,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3466,7 +3475,6 @@ export namespace Prisma {
      */
     where: TagWhereUniqueInput
   }
-
 
   /**
    * Tag findUniqueOrThrow
@@ -3477,7 +3485,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3485,7 +3493,6 @@ export namespace Prisma {
      */
     where: TagWhereUniqueInput
   }
-
 
   /**
    * Tag findFirst
@@ -3496,7 +3503,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3508,7 +3515,7 @@ export namespace Prisma {
      * 
      * Determine the order of Tags to fetch.
      */
-    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3534,7 +3541,6 @@ export namespace Prisma {
      */
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
-
 
   /**
    * Tag findFirstOrThrow
@@ -3545,7 +3551,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3557,7 +3563,7 @@ export namespace Prisma {
      * 
      * Determine the order of Tags to fetch.
      */
-    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3584,7 +3590,6 @@ export namespace Prisma {
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
-
   /**
    * Tag findMany
    */
@@ -3594,7 +3599,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3606,7 +3611,7 @@ export namespace Prisma {
      * 
      * Determine the order of Tags to fetch.
      */
-    orderBy?: TagOrderByWithRelationAndSearchRelevanceInput | TagOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: TagOrderByWithRelationInput | TagOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3628,7 +3633,6 @@ export namespace Prisma {
     distinct?: TagScalarFieldEnum | TagScalarFieldEnum[]
   }
 
-
   /**
    * Tag create
    */
@@ -3638,7 +3642,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3646,7 +3650,6 @@ export namespace Prisma {
      */
     data: XOR<TagCreateInput, TagUncheckedCreateInput>
   }
-
 
   /**
    * Tag createMany
@@ -3659,6 +3662,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  /**
+   * Tag createManyAndReturn
+   */
+  export type TagCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tag
+     */
+    select?: TagSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Tags.
+     */
+    data: TagCreateManyInput | TagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
 
   /**
    * Tag update
@@ -3669,7 +3686,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3681,7 +3698,6 @@ export namespace Prisma {
      */
     where: TagWhereUniqueInput
   }
-
 
   /**
    * Tag updateMany
@@ -3697,7 +3713,6 @@ export namespace Prisma {
     where?: TagWhereInput
   }
 
-
   /**
    * Tag upsert
    */
@@ -3707,7 +3722,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3724,7 +3739,6 @@ export namespace Prisma {
     update: XOR<TagUpdateInput, TagUncheckedUpdateInput>
   }
 
-
   /**
    * Tag delete
    */
@@ -3734,7 +3748,7 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
     /**
@@ -3742,7 +3756,6 @@ export namespace Prisma {
      */
     where: TagWhereUniqueInput
   }
-
 
   /**
    * Tag deleteMany
@@ -3754,7 +3767,6 @@ export namespace Prisma {
     where?: TagWhereInput
   }
 
-
   /**
    * Tag.artigos
    */
@@ -3764,17 +3776,16 @@ export namespace Prisma {
      */
     select?: ArtigoSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: ArtigoInclude<ExtArgs> | null
     where?: ArtigoWhereInput
-    orderBy?: ArtigoOrderByWithRelationAndSearchRelevanceInput | ArtigoOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: ArtigoOrderByWithRelationInput | ArtigoOrderByWithRelationInput[]
     cursor?: ArtigoWhereUniqueInput
     take?: number
     skip?: number
     distinct?: ArtigoScalarFieldEnum | ArtigoScalarFieldEnum[]
   }
-
 
   /**
    * Tag without action
@@ -3785,11 +3796,10 @@ export namespace Prisma {
      */
     select?: TagSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: TagInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -3947,7 +3957,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"Contato"> | Date | string
   }
 
-  export type ContatoOrderByWithRelationAndSearchRelevanceInput = {
+  export type ContatoOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
@@ -4003,7 +4013,7 @@ export namespace Prisma {
     tag?: XOR<TagRelationFilter, TagWhereInput>
   }
 
-  export type ArtigoOrderByWithRelationAndSearchRelevanceInput = {
+  export type ArtigoOrderByWithRelationInput = {
     id?: SortOrder
     slug?: SortOrder
     title?: SortOrder
@@ -4011,7 +4021,7 @@ export namespace Prisma {
     content?: SortOrder
     created_at?: SortOrder
     tagId?: SortOrder
-    tag?: TagOrderByWithRelationAndSearchRelevanceInput
+    tag?: TagOrderByWithRelationInput
     _relevance?: ArtigoOrderByRelevanceInput
   }
 
@@ -4065,7 +4075,7 @@ export namespace Prisma {
     artigos?: ArtigoListRelationFilter
   }
 
-  export type TagOrderByWithRelationAndSearchRelevanceInput = {
+  export type TagOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     slug?: SortOrder
