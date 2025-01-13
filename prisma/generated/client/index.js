@@ -117,11 +117,6 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.ContatoOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
@@ -161,7 +156,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/fabiofreitas/Documents/sites/clientes/yxe-api/prisma/generated/client",
+      "value": "/Users/fabiofreitas/Documents/react/clientes/yxe-api/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -178,11 +173,12 @@ const config = {
       "fullTextIndex",
       "fullTextSearch"
     ],
-    "sourceFilePath": "/Users/fabiofreitas/Documents/sites/clientes/yxe-api/prisma/schema.prisma",
+    "sourceFilePath": "/Users/fabiofreitas/Documents/react/clientes/yxe-api/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
   "clientVersion": "5.19.1",
@@ -190,8 +186,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "postgresql",
-  "postinstall": true,
+  "activeProvider": "mysql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -200,8 +195,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"./generated/client\"\n  previewFeatures = [\"fullTextSearch\", \"fullTextIndex\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Contato {\n  id         String   @id @default(uuid())\n  name       String\n  email      String\n  phone      String\n  created_at DateTime @default(now())\n}\n\nmodel Artigo {\n  id         String   @id @default(uuid())\n  slug       String   @unique\n  title      String\n  img        String\n  content    String   @db.Text\n  created_at DateTime @default(now())\n  tag        Tag      @relation(fields: [tagId], references: [id])\n  tagId      String\n}\n\nmodel Tag {\n  id      String   @id @default(uuid())\n  title   String\n  slug    String   @unique\n  artigos Artigo[]\n}\n",
-  "inlineSchemaHash": "d4e1175d19f8e46a4069711a98b5255541314cab50cef8faada33375afac5389",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"./generated/client\"\n  previewFeatures = [\"fullTextSearch\", \"fullTextIndex\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Contato {\n  id         String   @id @default(uuid())\n  name       String\n  email      String\n  phone      String\n  created_at DateTime @default(now())\n}\n\nmodel Artigo {\n  id         String   @id @default(uuid())\n  slug       String   @unique\n  title      String\n  img        String\n  content    String   @db.Text\n  created_at DateTime @default(now())\n  tag        Tag      @relation(fields: [tagId], references: [id])\n  tagId      String\n}\n\nmodel Tag {\n  id      String   @id @default(uuid())\n  title   String\n  slug    String   @unique\n  artigos Artigo[]\n}\n",
+  "inlineSchemaHash": "bac5c227d30964a4135883c040714f2bf0ff922cb4a63eac9a4e78ae96500b4f",
   "copyEngine": true
 }
 

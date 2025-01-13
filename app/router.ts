@@ -3,8 +3,8 @@ import { FindArtigos } from "./controllers/findArtigos";
 import { FindArtigosSingle } from "./controllers/findArtigosSingle";
 import { FindArtigosRecents } from "./controllers/findArtigosRecents";
 import { FindTags } from "./controllers/findTags";
-import { FindContatoController } from "./controllers/findContatoController";
-import { CreateContatoController } from "./controllers/createContatoController";
+import { FindContatoController } from "./controllers/findContato";
+import { CreateContatoController } from "./controllers/createContato";
 
 const router = Router();
 const example = {
